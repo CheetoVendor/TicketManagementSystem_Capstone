@@ -9,6 +9,7 @@ namespace TicketManagementSystem_Capstone
     /// </summary>
     public partial class App : Application
     {
+
     }
 
 }

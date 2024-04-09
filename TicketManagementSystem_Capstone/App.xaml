@@ -19,7 +19,7 @@
 
         <!--Window -->
         <Style TargetType="Window">
-            <Setter x:Name="brandColor5" Property="Background" Value="#091834"/>
+            <Setter Property="Background" Value="#091834"/>
 
         </Style>
 
