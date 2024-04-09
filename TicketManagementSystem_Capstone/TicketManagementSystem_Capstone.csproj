@@ -12,11 +12,10 @@
 
   <ItemGroup>
     <ApplicationDefinition Remove="App.xaml" />
-    <Page Include="App.xaml"/>
+    <Page Include="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

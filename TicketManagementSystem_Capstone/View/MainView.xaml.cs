@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TicketManagementSystem_Capstone.ViewModel;
 
 namespace TicketManagementSystem_Capstone.View
 {
@@ -19,9 +20,10 @@ namespace TicketManagementSystem_Capstone.View
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        public MainView(MainViewModel viewModel)
         {
             InitializeComponent();
+           
         }
     }
 }

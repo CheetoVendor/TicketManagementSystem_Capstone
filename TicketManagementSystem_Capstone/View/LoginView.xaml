@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
+        xmlns:viewModel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
+        d:DataContext="{d:DesignData Type=viewModel:LoginViewModel}"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800"
-        Background="#091834">
+        Title="Login" Height="450" Width="800"
+        Background="#091834"
+        >
+
 
     <Grid x:Name="MainGrid" MaxWidth="480" MaxHeight="520">
 
@@ -70,6 +74,7 @@
             <Button Grid.Row="3" Grid.ColumnSpan="2" 
                 MaxWidth="110" 
                 Content="Login"
+                Command="{Binding LoginCommand}"
                 />
             <!-- Exit Button -->
             <Button Grid.Row="4" Grid.ColumnSpan="2" 
