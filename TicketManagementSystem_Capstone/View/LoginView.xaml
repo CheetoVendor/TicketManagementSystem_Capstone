@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800">
+        Title="LoginView" Height="450" Width="800"
+        Background="#091834">
+
     <Grid x:Name="MainGrid" MaxWidth="480" MaxHeight="520">
 
         <Grid.ColumnDefinitions>
