@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using TicketManagementSystem_Capstone.Models;
 
-namespace TicketManagementSystem_Capstone.Database
+namespace TicketManagementSystem_Capstone.Data
 {
     public class DuraTechDbContext : DbContext
     {
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Group> Groups => Set<Group>();
+        public DbSet<Ticket> Tickets => Set<Ticket>();
+        public DbSet<Customer> Customers => Set<Customer>();
 
         public DuraTechDbContext(DbContextOptions<DuraTechDbContext> options) 
             : base(options)

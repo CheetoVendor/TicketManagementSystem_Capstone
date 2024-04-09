@@ -4,7 +4,7 @@ using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TicketManagementSystem_Capstone.Database;
+using TicketManagementSystem_Capstone.Data;
 using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
 
@@ -27,6 +27,8 @@ namespace TicketManagementSystem_Capstone
             // Run app with login window
             App app = new();
             app.InitializeComponent();
+
+
             app.MainWindow = _host.Services.GetRequiredService<LoginView>();
             app.MainWindow.Visibility = Visibility.Visible;
             app.Run();
@@ -49,10 +51,6 @@ namespace TicketManagementSystem_Capstone
                     });
                 });
         }
-
-
-
-
 
         protected override void OnStartup(StartupEventArgs e)
         {

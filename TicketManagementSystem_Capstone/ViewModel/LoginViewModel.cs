@@ -1,7 +1,9 @@
 ﻿using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TicketManagementSystem_Capstone.Data;
 
 namespace TicketManagementSystem_Capstone.ViewModel
 {
@@ -22,7 +24,13 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         private void Login()
         {
-             
+            // get user id by email.
+
+            // verify email and password match
+
+            // if so LOG IN AND MOVE TO MainWindow
+
+            // else print error
         }
     }
 }
