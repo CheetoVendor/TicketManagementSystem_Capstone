@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="ViewModel\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

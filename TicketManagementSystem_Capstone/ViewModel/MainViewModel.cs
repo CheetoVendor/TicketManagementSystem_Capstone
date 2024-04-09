@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketManagementSystem_Capstone.Models
+namespace TicketManagementSystem_Capstone.ViewModel
 {
-    public class LoginViewModel
+    public class MainViewModel
     {
+
     }
 }
