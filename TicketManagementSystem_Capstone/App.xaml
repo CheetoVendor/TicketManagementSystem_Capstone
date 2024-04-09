@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TicketManagementSystem_Capstone"
              xmlns:view="clr-namespace:TicketManagementSystem_Capstone.View"
              xmlns:viewModels="clr-namespace:TicketManagementSystem_Capstone.Models"
-             StartupUri="MainWindow.xaml">
+             StartupUri="/View/LoginView.xaml">
     <Application.Resources>
         <!-- Data Templates -->
         <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
@@ -23,12 +23,7 @@
 
         </Style>
 
-        <!--
-<Setter x:Name="brandColor4" Property="Background" Value="#0A337F"/>
-<Setter x:Name="brandColor3" Property="Background" Value="#1258DC"/>
- <Setter x:Name="brandColor2" Property="Background" Value="#6395F2"/>
-<Setter x:Name="brandColor1" Property="Background" Value="#DEE9fc"/>
- -->
+            
 
 
         <!--Button Style -->
