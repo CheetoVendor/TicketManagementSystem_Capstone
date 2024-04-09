@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TicketManagementSystem_Capstone"
              xmlns:view="clr-namespace:TicketManagementSystem_Capstone.View"
-             xmlns:viewModels="clr-namespace:TicketManagementSystem_Capstone.Models"
+             xmlns:viewModel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
              StartupUri="/View/LoginView.xaml">
     <Application.Resources>
         <!-- Data Templates -->
-        <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
             <view:MainView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
             <view:LoginView/>
         </DataTemplate>
 
