@@ -22,14 +22,7 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         private void Login()
         {
-            if(Email == "A" && Password == "A")
-            {
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine();
-            }
+             
         }
     }
 }
