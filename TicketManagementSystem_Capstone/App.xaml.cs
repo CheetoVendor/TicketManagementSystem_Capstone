@@ -52,7 +52,7 @@ namespace TicketManagementSystem_Capstone
                             "Server=TRANCE\\MSSQLSERVERNAMED;Database=DuraTechDB;Trusted_Connection=True;TrustServerCertificate=True");
                     });
                     services.AddScoped<IUserRepository, UserRepository>();
-                    services.AddScoped<IRepository, >()
+
                     services.AddScoped<IUnitOfWork, UnitOfWork>();
                 });
         }
