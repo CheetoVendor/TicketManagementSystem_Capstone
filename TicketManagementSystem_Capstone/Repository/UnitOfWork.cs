@@ -12,20 +12,15 @@ namespace TicketManagementSystem_Capstone.Repository
 {
     public class UnitOfWork : IUnitOfWork, IDisposable, IAsyncDisposable
     {
-        
-        public IRepository<Customer> Customers { get; }
+        public IRepository<Customer> Customers { get; } 
         public IRepository<Group> Groups { get; set; }
         public IRepository<Ticket> Tickets { get; set; }
         public IRepository<User> Users { get; set; }
-        DuraTechDbContext DbContext { get; set; }
+        public DuraTechDbContext DbContext { get; set; }
 
         public UnitOfWork(DuraTechDbContext dbContext)
         {
             DbContext = dbContext;
-            Users = new UserRepository(dbContext);
-            Tickets = new Repository<Ticket>(dbContext);
-            Groups = new Repository<Group>(dbContext);
-            Customers = new Repository<Customer>(dbContext);
         }
 
         public void Commit()

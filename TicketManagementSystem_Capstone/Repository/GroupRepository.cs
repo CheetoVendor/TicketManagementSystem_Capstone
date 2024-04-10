@@ -9,7 +9,7 @@ using TicketManagementSystem_Capstone.Repository.Interfaces;
 
 namespace TicketManagementSystem_Capstone.Repository
 {
-    public class GroupRepository : Repository<Group>, IRepository<Group>
+    public class GroupRepository : Repository<Group>, IGroupRepository
     {
         public GroupRepository(DuraTechDbContext dbContext) : base(dbContext)
         {

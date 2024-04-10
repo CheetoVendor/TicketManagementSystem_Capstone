@@ -8,12 +8,10 @@ using TicketManagementSystem_Capstone.Models;
 
 namespace TicketManagementSystem_Capstone.Repository.Interfaces
 {
-    public class CustomerRepository : Repository<Customer>, IRepository<Customer>
+    public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
-        private DuraTechDbContext _dbContext;
         public CustomerRepository(DuraTechDbContext dbContext) : base(dbContext)
         {
-            _dbContext = dbContext;
         }
     }
 }

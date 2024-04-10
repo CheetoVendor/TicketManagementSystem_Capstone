@@ -12,11 +12,9 @@ namespace TicketManagementSystem_Capstone.Repository
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        public DuraTechDbContext Context;
 
         public UserRepository(DuraTechDbContext dbContext) : base(dbContext)
         {
-            Context = dbContext;
         }
 
         /// <summary>
@@ -25,7 +23,7 @@ namespace TicketManagementSystem_Capstone.Repository
         /// <param name="email">Email provided during login.</param>
         /// <returns></returns>
         public bool EmailExists(string email) => 
-            Context.Set<User>().Any(user => user.Email == email);
+            _dbContext.Set<User>().Any(user => user.Email == email);
         
         /// <summary>
         /// Used to determine whether a login is correct or not.
@@ -34,7 +32,7 @@ namespace TicketManagementSystem_Capstone.Repository
         /// <param name="password">Password provided at login attempt.</param>
         /// <returns></returns>
         public bool IsLoginCorrect(string email, string password) =>
-            Context.Set<User>().Any(user => user.Email.ToLower().Equals(email.ToLower()) && user.Password == password);
+            _dbContext.Set<User>().Any(user => user.Email.ToLower().Equals(email.ToLower()) && user.Password == password);
 
         public bool IsEmailUnique(string email) => !EmailExists(email);
 
