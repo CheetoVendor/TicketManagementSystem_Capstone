@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicketManagementSystem_Capstone.Data;
+using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
@@ -19,7 +20,6 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         [ObservableProperty] 
         public string? _errorMessage;
-
 
         public ICommand LoginCommand { get; }
 
