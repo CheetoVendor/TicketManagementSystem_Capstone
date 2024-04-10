@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicketManagementSystem_Capstone.Data;
+using TicketManagementSystem_Capstone.Repository;
+using TicketManagementSystem_Capstone.Repository.Interfaces;
 using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
 
@@ -49,6 +51,9 @@ namespace TicketManagementSystem_Capstone
                         options.UseSqlServer(
                             "Server=TRANCE\\MSSQLSERVERNAMED;Database=DuraTechDB;Trusted_Connection=True;TrustServerCertificate=True");
                     });
+                    services.AddScoped<IUserRepository, UserRepository>();
+                    services.AddScoped<IRepository, >()
+                    services.AddScoped<IUnitOfWork, UnitOfWork>();
                 });
         }
 

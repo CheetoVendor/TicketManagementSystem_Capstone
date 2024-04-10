@@ -6,16 +6,9 @@ namespace TicketManagementSystem_Capstone.Data
 {
     public class DuraTechDbContext : DbContext
     {
-        public DbSet<User> Users => Set<User>();
-        public DbSet<Group> Groups => Set<Group>();
-        public DbSet<Ticket> Tickets => Set<Ticket>();
-        public DbSet<Customer> Customers => Set<Customer>();
-
         public DuraTechDbContext(DbContextOptions<DuraTechDbContext> options) 
             : base(options)
-        {
-            
-        }
+        {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
