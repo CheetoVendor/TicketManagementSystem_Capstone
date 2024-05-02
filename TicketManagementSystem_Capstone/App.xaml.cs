@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,7 +32,7 @@ namespace TicketManagementSystem_Capstone
             app.InitializeComponent();
 
 
-            app.MainWindow = _host.Services.GetRequiredService<LoginView>();
+            app.MainWindow = _host.Services.GetRequiredService<MainView>();
             app.MainWindow.Visibility = Visibility.Visible;
             app.Run();
         }
@@ -42,10 +43,10 @@ namespace TicketManagementSystem_Capstone
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<LoginView>();
-                    services.AddSingleton<LoginViewModel>();
                     services.AddSingleton<MainView>();
                     services.AddSingleton<MainViewModel>();
+                    services.AddSingleton<LoginView>();
+                    services.AddSingleton<LoginViewModel>();
                     services.AddDbContext<DuraTechDbContext>(options =>
                     {
                         options.UseSqlServer(
@@ -53,6 +54,7 @@ namespace TicketManagementSystem_Capstone
                     });
 
                     // Adding repositories
+                    services.AddSingleton<IMessenger, WeakReferenceMessenger>();
                     services.AddScoped<IUserRepository, UserRepository>();
                     services.AddScoped<IGroupRepository, GroupRepository>();
                     services.AddScoped<ITicketRepository, TicketRepository>();

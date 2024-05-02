@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TicketManagementSystem_Capstone.ViewModel;
 
 namespace TicketManagementSystem_Capstone.View
 {
     /// <summary>
     /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class LoginView : Page
     {
-        public LoginView(LoginViewModel loginView)
+        public LoginView()
         {
             InitializeComponent();
-            DataContext = loginView;
         }
     }
 }

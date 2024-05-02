@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
+        xmlns:viewmodel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
+        d:DataContext="{d:DesignData Type=viewmodel:LoginViewModel}"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        Title="MainView" Height="450" Width="800"
+        Background="#091832">
+
     <Grid>
-        
+        <!-- Move grid over -->
+
+        <ContentControl DataContext="{Binding CurrentWindow}"></ContentControl>
     </Grid>
 </Window>
