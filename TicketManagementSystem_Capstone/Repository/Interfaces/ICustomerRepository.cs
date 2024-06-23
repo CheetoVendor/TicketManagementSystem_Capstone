@@ -4,5 +4,5 @@ namespace TicketManagementSystem_Capstone.Repository.Interfaces;
 
 public interface ICustomerRepository : IRepository<Customer>
 {
-    // customer specific needs
+    public Customer GetCustomerById(int id);
 }

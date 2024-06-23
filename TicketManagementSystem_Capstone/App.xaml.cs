@@ -1,13 +1,12 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
-using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Windows;
 using TicketManagementSystem_Capstone.Data;
 using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
+using TicketManagementSystem_Capstone.Services;
 using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
 
@@ -47,6 +46,9 @@ namespace TicketManagementSystem_Capstone
                     services.AddSingleton<MainViewModel>();
                     services.AddSingleton<LoginView>();
                     services.AddSingleton<LoginViewModel>();
+                    services.AddTransient<TicketControlViewModel>();
+                    services.AddTransient<TicketControlView>();
+                    services.AddSingleton<VVMService>();
                     services.AddDbContext<DuraTechDbContext>(options =>
                     {
                         options.UseSqlServer(

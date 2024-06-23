@@ -7,26 +7,40 @@
              >
     <Application.Resources>
         <!-- Data Templates -->
-        
-
-
-
 
         <!--Window -->
         <Style TargetType="Window">
-            <Setter Property="Background" Value="#091834"/>
+            <Setter Property="Background" Value="#6395f2"/>
 
         </Style>
-
-            
-
-
+        
+        <!--List View -->
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#6395f2"/>
+        </Style>
+        
+        <!--List View Item-->
+        <Style TargetType="ListViewItem">
+            <Setter Property="Height" Value="50"/>
+        </Style>
+        
+        <!--Tab Control -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="#6395f2"/>
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Background" Value="#6395f2"/>
+        </Style>
+        <!--Radio Button Style-->
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
         <!--Button Style -->
-        <Style TargetType="Button" >
-            <!--add a key if it looks like shit across app -->
-            <Setter Property="Foreground" Value="#DEE6FC" />
-            <Setter Property="Background" Value="#1258DC"/>
-            <Setter Property="BorderThickness" Value="0"/>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#091834" />
+            <Setter Property="Background" Value="#DEE9fc"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Margin" Value="2"/>
         </Style>
         <!--TextBox Style -->

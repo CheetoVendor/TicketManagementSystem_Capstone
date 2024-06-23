@@ -1,12 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Extensions.DependencyInjection;
-using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
-using TicketManagementSystem_Capstone.View;
 
 namespace TicketManagementSystem_Capstone.ViewModel
 {

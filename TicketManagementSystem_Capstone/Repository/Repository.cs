@@ -31,7 +31,7 @@ namespace TicketManagementSystem_Capstone.Repository
 
         public IEnumerable<T> FindAll()
         {
-            return _dbContext.Set<T>().ToList();
+            return _dbContext.Set<T>();
         }
 
         public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)

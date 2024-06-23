@@ -9,6 +9,8 @@ namespace TicketManagementSystem_Capstone.Repository.Interfaces
 {
     public interface ITicketRepository : IRepository<Ticket>
     {
-        // Add customs for tickets
+        public List<Ticket> GetAll();
+
+        public List<Ticket> GetActive();
     }
 }
