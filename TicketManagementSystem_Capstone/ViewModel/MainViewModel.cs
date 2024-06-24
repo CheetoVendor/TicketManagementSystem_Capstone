@@ -73,4 +73,3 @@ namespace TicketManagementSystem_Capstone.ViewModel
         #endregion
     }
 }
-// TODO (D) - Change color scheme color. make left side darker than tab side. REF to doc for users opinions.

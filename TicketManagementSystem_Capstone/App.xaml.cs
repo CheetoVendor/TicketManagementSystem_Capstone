@@ -48,6 +48,8 @@ namespace TicketManagementSystem_Capstone
                     services.AddSingleton<LoginViewModel>();
                     services.AddTransient<TicketControlViewModel>();
                     services.AddTransient<TicketControlView>();
+                    services.AddTransient<CreateTicketView>();
+                    services.AddTransient<CreateTicketViewModel>();
                     services.AddSingleton<VVMService>();
                     services.AddDbContext<DuraTechDbContext>(options =>
                     {

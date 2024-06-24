@@ -30,5 +30,11 @@ namespace TicketManagementSystem_Capstone.ViewModel
         {
             Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetActive());
         }
+
+        // Updates customer depending on ticket selected
+        partial void OnSelectedTicketChanged(Ticket value)
+        {
+            SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
+        }
     }
 }

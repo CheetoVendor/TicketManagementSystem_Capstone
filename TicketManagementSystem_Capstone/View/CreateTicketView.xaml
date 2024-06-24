@@ -1,0 +1,63 @@
+﻿<Page x:Class="TicketManagementSystem_Capstone.View.CreateTicketView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
+      xmlns:viewmodel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
+      d:DataContext="{d:DesignInstance Type=viewmodel:CreateTicketViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CreateTicketView">
+
+    <StackPanel>
+        <Label Content="Create Ticket" FontSize="20"/>
+        
+        <!--Ticket Title-->
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Title:"/>
+            <TextBox Text="{Binding Title}"
+                     MinWidth="100"/>
+        </StackPanel>
+        
+        <!--Ticket Description-->
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Description:"/>
+            <TextBox Text="{Binding Description}"
+                TextWrapping="Wrap" MinWidth="100" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Status:"/>
+            <ComboBox ItemsSource="{Binding Statuses}" MinWidth="100" SelectedItem="{Binding Status}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Priority:"/>
+            <ComboBox ItemsSource="{Binding Priorities}" SelectedItem="{Binding Priority}"
+                      MinWidth="100"/>
+            <!-- Add Priorities -->
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Assigned To:"/>
+            <ComboBox />
+            <!--Pull in Users to select -->
+        </StackPanel>
+        <Label Content="Customer Information" FontSize="20"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Customer Name:"/>
+            <TextBox MinWidth="100"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Phone Number:"/>
+            <TextBox MinWidth="100"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Email:"/>
+            <TextBox MinWidth="100"></TextBox>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Create Ticket" Command="{Binding CreateTicketCommand}"/>
+            <Button Content="Clear" Command="{Binding ClearCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Page>

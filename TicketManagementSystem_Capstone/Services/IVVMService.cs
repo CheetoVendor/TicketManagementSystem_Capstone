@@ -11,5 +11,7 @@ namespace TicketManagementSystem_Capstone.Services
         LoginViewModel GetLoginViewModel();
         TicketControlView GetTicketControlView();
         TicketControlViewModel GetTicketControlViewModel();
+        CreateTicketView GetCreateTicketView();
+        CreateTicketViewModel GetCreateTicketViewModel();
     }
 }

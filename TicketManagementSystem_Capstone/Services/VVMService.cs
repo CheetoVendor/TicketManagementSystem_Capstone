@@ -15,6 +15,18 @@ namespace TicketManagementSystem_Capstone.Services
             _host = host;
         }
 
+        public CreateTicketView GetCreateTicketView()
+        {
+           var view = (CreateTicketView)_host.Services.GetService(typeof(CreateTicketView));
+            return view;
+        }
+
+        public CreateTicketViewModel GetCreateTicketViewModel()
+        {
+            var viewModel = (CreateTicketViewModel)_host.Services.GetService(typeof(CreateTicketViewModel));
+            return viewModel;
+        }
+
         public LoginView GetLoginView()
         {
             var view = (LoginView)_host.Services.GetService(typeof(LoginView));

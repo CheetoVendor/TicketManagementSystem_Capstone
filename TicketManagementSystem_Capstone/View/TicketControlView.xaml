@@ -32,7 +32,8 @@
         <DataGrid Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" 
                   ItemsSource="{Binding Tickets}"
                   SelectionMode="Single"
-                  SelectedItem="{Binding SelectedTicket}" >
+                  SelectedItem="{Binding SelectedTicket}"
+                  >
         </DataGrid>
         <!--Radio Buttons-->
         <RadioButton Content="Active"
@@ -65,7 +66,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Priority:"/>
-                    <Label>ADD PRIORITIES</Label>
+                    <Label Content="{Binding SelectedCustomer.Is_Priority}"></Label>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -84,7 +85,18 @@
                 
                 <!--Customer Information-->
                 <Label Content="Customer Information" FontSize="16"/>
-                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Name:"/>
+                    <Label Content="{Binding SelectedCustomer.Name}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Phone:"/>
+                    <Label Content="{Binding SelectedCustomer.Phone}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Email: "/>
+                    <Label Content="{Binding SelectedCustomer.Email}"/>
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

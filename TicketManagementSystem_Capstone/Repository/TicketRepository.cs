@@ -11,13 +11,14 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
     {
         this.dbContext = dbContext;
     }
-
-    // TEST 
+    
+    // Gets Tickets that are active/in progress
     public List<Ticket> GetActive()
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "Active").ToList();
     }
 
+    // Gets all tickets 
     public List<Ticket> GetAll()
     {
         return dbContext.Ticket.ToList();
