@@ -6,6 +6,7 @@ namespace TicketManagementSystem_Capstone.Repository.Interfaces;
 public class CustomerRepository : Repository<Customer>, ICustomerRepository
 {
     DuraTechDbContext dbContext;
+
     public CustomerRepository(DuraTechDbContext dbContext) : base(dbContext)
     {
         this.dbContext = dbContext;

@@ -16,7 +16,7 @@ namespace TicketManagementSystem_Capstone.Repository.Interfaces
         public List<Ticket> GetOpen();
 
         // Gets assigned tickets
-        public List<Ticket> GetAssigned();
+        public List<Ticket> GetAssigned(string team);
 
         // Gets in progress tickets
         public List<Ticket> GetInProgress();

@@ -87,7 +87,8 @@
                 <!--Assignee-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Assigned To:"/>
-                    <ComboBox ItemsSource="{Binding Groups}" 
+                    <ComboBox ItemsSource="{Binding Groups}"
+                              SelectedItem="{Binding SelectedTicket.Assigned_To}"
                               MinWidth="100"/>
                 </StackPanel>
                 

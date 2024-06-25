@@ -44,8 +44,8 @@ namespace TicketManagementSystem_Capstone
                 {
                     services.AddSingleton<MainView>();
                     services.AddSingleton<MainViewModel>();
-                    services.AddSingleton<LoginView>();
-                    services.AddSingleton<LoginViewModel>();
+                    services.AddTransient<LoginView>();
+                    services.AddTransient<LoginViewModel>();
                     services.AddTransient<TicketControlViewModel>();
                     services.AddTransient<TicketControlView>();
                     services.AddTransient<CreateNewTicketView>();
@@ -62,7 +62,6 @@ namespace TicketManagementSystem_Capstone
                     // Adding repositories
                     services.AddSingleton<IMessenger, WeakReferenceMessenger>();
                     services.AddScoped<IUserRepository, UserRepository>();
-                    services.AddScoped<IGroupRepository, GroupRepository>();
                     services.AddScoped<ITicketRepository, TicketRepository>();
                     services.AddScoped<ICustomerRepository, CustomerRepository>();
                     services.AddScoped<IUnitOfWork, UnitOfWork>();

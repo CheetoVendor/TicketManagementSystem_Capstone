@@ -43,7 +43,7 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         private void ShowAssignedTickets()
         {
-            throw new NotImplementedException();
+            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetAssigned("Maintenance Team")); // Todo(L) - change to current users team for argument
         }
 
         private void ShowOpenTickets()

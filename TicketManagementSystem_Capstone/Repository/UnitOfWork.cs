@@ -6,7 +6,6 @@ namespace TicketManagementSystem_Capstone.Repository
     public class UnitOfWork : IUnitOfWork, IDisposable, IAsyncDisposable
     {
         public ICustomerRepository Customers { get; }
-        public IGroupRepository Groups { get; set; }
         public ITicketRepository Tickets { get; set; }
         public IUserRepository Users { get; set; }
 
@@ -16,7 +15,6 @@ namespace TicketManagementSystem_Capstone.Repository
         {
             DbContext = dbContext;
             Customers = new CustomerRepository(dbContext);
-            Groups = new GroupRepository(dbContext);
             Tickets = new TicketRepository(dbContext);
         }
 

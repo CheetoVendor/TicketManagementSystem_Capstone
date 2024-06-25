@@ -19,10 +19,9 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
     }
 
     // Get ticket assigned to group
-    public List<Ticket> GetAssigned()
+    public List<Ticket> GetAssigned(string team)
     {
-
-        return dbContext.Ticket.Where(ticket => ticket.Status == "Assigned").ToList();
+        return dbContext.Ticket.Where(ticket => ticket.Assigned_To == team).ToList();
     }
 
     // Gets Tickets that are Open
