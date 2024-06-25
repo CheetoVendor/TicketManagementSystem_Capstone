@@ -17,11 +17,11 @@ using TicketManagementSystem_Capstone.ViewModel;
 namespace TicketManagementSystem_Capstone.View
 {
     /// <summary>
-    /// Interaction logic for CreateTicketView.xaml
+    /// Interaction logic for CreateNewTicketView.xaml
     /// </summary>
-    public partial class CreateTicketView : Page
+    public partial class CreateNewTicketView : UserControl
     {
-        public CreateTicketView(CreateTicketViewModel vm)
+        public CreateNewTicketView(CreateNewTicketViewModel vm)
         {
             DataContext = vm;
             InitializeComponent();

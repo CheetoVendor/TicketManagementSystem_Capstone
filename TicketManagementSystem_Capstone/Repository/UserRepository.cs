@@ -12,9 +12,10 @@ namespace TicketManagementSystem_Capstone.Repository
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-
+        DuraTechDbContext _dbContext;
         public UserRepository(DuraTechDbContext dbContext) : base(dbContext)
         {
+            _dbContext = dbContext;
         }
 
         /// <summary>

@@ -15,15 +15,27 @@ namespace TicketManagementSystem_Capstone.Services
             _host = host;
         }
 
-        public CreateTicketView GetCreateTicketView()
+        public ArchiveTicketView GetArchiveTicketView()
         {
-           var view = (CreateTicketView)_host.Services.GetService(typeof(CreateTicketView));
+            var view = (ArchiveTicketView)_host.Services.GetService(typeof(ArchiveTicketView));
             return view;
         }
 
-        public CreateTicketViewModel GetCreateTicketViewModel()
+        public ArchiveTicketViewModel GetArchiveTicketViewModel()
         {
-            var viewModel = (CreateTicketViewModel)_host.Services.GetService(typeof(CreateTicketViewModel));
+            var viewModel = (ArchiveTicketViewModel)_host.Services.GetService(typeof(ArchiveTicketViewModel));
+            return viewModel;
+        }
+
+        public CreateNewTicketView GetCreateNewTicketView()
+        {
+           var view = (CreateNewTicketView)_host.Services.GetService(typeof(CreateNewTicketView));
+            return view;
+        }
+
+        public CreateNewTicketViewModel GetCreateNewTicketViewModel()
+        {
+            var viewModel = (CreateNewTicketViewModel)_host.Services.GetService(typeof(CreateNewTicketViewModel));
             return viewModel;
         }
 

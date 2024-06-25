@@ -4,11 +4,11 @@ using TicketManagementSystem_Capstone.ViewModel;
 namespace TicketManagementSystem_Capstone.View
 {
     /// <summary>
-    /// Interaction logic for TicketControlView.xaml
+    /// Interaction logic for ArchiveTicketView.xaml
     /// </summary>
-    public partial class TicketControlView : UserControl
+    public partial class ArchiveTicketView : UserControl
     {
-        public TicketControlView(TicketControlViewModel vm)
+        public ArchiveTicketView(ArchiveTicketViewModel vm)
         {
             DataContext = vm;
             InitializeComponent();

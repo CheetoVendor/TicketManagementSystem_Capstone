@@ -15,16 +15,5 @@ namespace TicketManagementSystem_Capstone.Models
         public string Status { get; set; }
         public DateTime Created_Date { get; set; }
         public DateTime Updated_Date { get; set; }
-
-
-        public Ticket(int customerId, string title, string description, string status)
-        {
-            this.Customer_Id = customerId;
-            this.Title = title;
-            this.Description = description;
-            this.Status = status;
-            this.Created_Date = DateTime.Now;
-            this.Updated_Date = DateTime.Now;
-        }
     }
 }

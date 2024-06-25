@@ -1,8 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
-using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using TicketManagementSystem_Capstone.Services;
-using TicketManagementSystem_Capstone.View;
 
 namespace TicketManagementSystem_Capstone.ViewModel
 {
@@ -10,43 +7,16 @@ namespace TicketManagementSystem_Capstone.ViewModel
     {
         #region Props
         private IVVMS _viewViewModelService;
-        private BaseViewModel? _currentTab;
-        public BaseViewModel? CurrentTab
-        {
-            get => _currentTab;
-            set
-            {
-                if(_currentTab != value)
-                {
-                    _currentTab = value;
-                    OnPropertyChanged(nameof(CurrentTab));
-                    OnPropertyChanged(nameof(CurrentTabView));
-                }
-            }
-        }
-        
-        // Prop for the view
-        public object? CurrentTabView 
-        { 
-            get
-            {
-                if(_currentTab != null && viewModelViewMap.ContainsKey(_currentTab.GetType()))
-                {
-                    var viewType = viewModelViewMap[_currentTab.GetType()];
-                    // get host to return the view
-                    var view = _viewViewModelService.GetTicketControlView();
-                    return view;
-                }
-                return null;
-            } 
-        }
 
-        // Dictionary to map view and view model
-        public Dictionary<Type, Type> viewModelViewMap = new Dictionary<Type, Type>
-        {
-            {typeof(LoginViewModel), typeof(LoginView)},
-            {typeof(TicketControlViewModel), typeof(TicketControlView) }
-        };
+        [ObservableProperty]
+        public BaseViewModel? _CurrentTab;
+
+        [ObservableProperty]
+        public object? _CurrentTabView;
+
+        [ObservableProperty]
+        public int _Index;
+
         #endregion
 
         #region Ctors
@@ -55,21 +25,32 @@ namespace TicketManagementSystem_Capstone.ViewModel
             _viewViewModelService = viewViewModelService;
 
             CurrentTab = _viewViewModelService.GetTicketControlViewModel();
-
-            //Set Commands
-            ChangeViewCommand = new RelayCommand(ChangeView);
+            CurrentTabView = _viewViewModelService.GetTicketControlView();
         }
         #endregion
 
-        #region Commands
-        public ICommand ChangeViewCommand { get; }
-        
 
-        
-        public void ChangeView()
+
+        // Used to change view/viewmodel when tab is changed
+        partial void OnIndexChanged(int oldValue, int newValue)
         {
-            
+            switch (Index)
+            {
+                case 0:
+                    CurrentTab = _viewViewModelService.GetTicketControlViewModel();
+                    CurrentTabView = _viewViewModelService.GetTicketControlView();
+                    break;
+                case 1:
+                    CurrentTab = _viewViewModelService.GetCreateNewTicketViewModel();
+                    CurrentTabView = _viewViewModelService.GetCreateNewTicketView();
+                    break;
+                case 2:
+                    CurrentTab = _viewViewModelService.GetArchiveTicketViewModel();
+                    CurrentTabView = _viewViewModelService.GetArchiveTicketView();
+                    break;
+                default:
+                    break;
+            }
         }
-        #endregion
     }
 }

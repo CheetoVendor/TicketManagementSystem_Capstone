@@ -10,8 +10,8 @@ namespace TicketManagementSystem_Capstone.View
     {
         public MainView(MainViewModel viewModel)
         {
-            InitializeComponent();
             DataContext = viewModel;
+            InitializeComponent();
         }
     }
 }

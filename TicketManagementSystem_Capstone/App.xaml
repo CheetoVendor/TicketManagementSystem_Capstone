@@ -35,18 +35,24 @@
         <Style TargetType="RadioButton">
             <Setter Property="Foreground" Value="White"/>
         </Style>
-
+        
+        <!--Combo Box-->
+        <Style TargetType="ComboBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
         <!--Button Style -->
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="#091834" />
             <Setter Property="Background" Value="#DEE9fc"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="MinWidth" Value="100"/>
         </Style>
         <!--TextBox Style -->
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2"/>
             <Setter Property="MaxWidth" Value="120"/>
+            <Setter Property="MinWidth" Value="100"/>
         </Style>
         <!-- TODO: Style your tables and reports in here -->
     </Application.Resources>

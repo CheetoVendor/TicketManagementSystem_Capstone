@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
         xmlns:viewmodel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
-        d:DataContext="{d:DesignData Type=viewmodel:MainViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
         Title="DuraTech TSM" Height="450" Width="800"
         Background="#091832">
@@ -36,16 +36,16 @@
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   ScrollViewer.CanContentScroll="False"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-            <ListViewItem >
+            <ListViewItem>
                 <Button Content="Tickets"
                         Margin="0,0,0,0"
-                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}} }"
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                         Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"/>
             </ListViewItem>
         </ListView>
 
-        <TabControl Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="#6395f2">
-            <TabItem Header="Tickets" >
+        <TabControl Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="#6395f2" SelectedIndex="{Binding Index}">
+            <TabItem Header="Tickets">
                 <ContentControl Content="{Binding CurrentTabView}"/>
             </TabItem>
 
@@ -54,7 +54,7 @@
             </TabItem>
 
             <TabItem Header="Archive">
-                
+                <ContentControl Content="{Binding CurrentTabView}"/>
             </TabItem>
         </TabControl>
     </Grid>
