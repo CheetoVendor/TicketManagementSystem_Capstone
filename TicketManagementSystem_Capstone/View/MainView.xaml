@@ -51,8 +51,8 @@
 
             </ListViewItem>
         </ListView>
-
-        <TabControl Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="#6395f2" SelectedIndex="{Binding Index}">
+        <Rectangle Fill="#6395f2" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <TabControl Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="#6395f2" SelectedIndex="{Binding Index}" >
             <TabItem Header="Tickets">
                 <ContentControl Content="{Binding CurrentTabView}"/>
             </TabItem>
