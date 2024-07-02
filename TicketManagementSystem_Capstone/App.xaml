@@ -6,11 +6,10 @@
              xmlns:viewModel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
              >
     <Application.Resources>
-        <!-- Data Templates -->
 
         <!--Window -->
         <Style TargetType="Window">
-            <Setter Property="Background" Value="#6395f2"/>
+            <Setter Property="Background" Value="#dee0e2"/>
 
         </Style>
         
@@ -26,15 +25,21 @@
         
         <!--Tab Control -->
         <Style TargetType="TabControl">
-            <Setter Property="Background" Value="#6395f2"/>
+            <Setter Property="Background" Value="#dee0e2"/>
         </Style>
+        <!-- Tab Item -->
         <Style TargetType="TabItem">
-            <Setter Property="Background" Value="#6395f2"/>
+            <Setter Property="Background" Value="#080808"/>
+            <Setter Property="Foreground" Value="#dee0e2"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#dee0e2"/>
+                    <Setter Property="Foreground" Value="#080808"/>
+                </Trigger>
+                
+            </Style.Triggers>
         </Style>
-        <!--Radio Button Style-->
-        <Style TargetType="RadioButton">
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
+
         
         <!--Combo Box-->
         <Style TargetType="ComboBox">
@@ -54,6 +59,9 @@
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="MaxHeight" Value="20"/>
         </Style>
+        
+        
+        
         <!-- TODO: Style your tables and reports in here -->
     </Application.Resources>
 </Application>

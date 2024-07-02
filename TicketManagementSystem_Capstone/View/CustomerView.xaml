@@ -23,12 +23,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
+        <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3">
             <Label Content="Customers" FontSize="20"/>
-             <!-- Customer Data grid -->
+            <!-- Customer Data grid -->
             <DataGrid ItemsSource="{Binding Customers}" 
-                      Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3"
-                      IsReadOnly="True" SelectedItem="{Binding SelectedCustomer}"/>
+                      SelectedItem="{Binding SelectedCustomer}"
+                      IsReadOnly="True" CanUserSortColumns="False"
+                      MinHeight="300"/>
+        </StackPanel>
+            
 
             <!--Customer Information-->
         <Border Grid.Column="3" Grid.ColumnSpan="4"
@@ -75,7 +78,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Zip Code:"/>
-                <TextBox Text="{Binding SelectedCustomer.City}"/>
+                <TextBox Text="{Binding SelectedCustomer.Zip}"/>
             </StackPanel>
         </StackPanel>
         

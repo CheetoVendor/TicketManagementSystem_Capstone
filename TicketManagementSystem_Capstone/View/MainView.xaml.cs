@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using TicketManagementSystem_Capstone.ViewModel;
 
 namespace TicketManagementSystem_Capstone.View
@@ -12,6 +13,14 @@ namespace TicketManagementSystem_Capstone.View
         {
             DataContext = viewModel;
             InitializeComponent();
+        }
+
+        private void DockPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ButtonState == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

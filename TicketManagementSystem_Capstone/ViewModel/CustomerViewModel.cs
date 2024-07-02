@@ -27,9 +27,11 @@ public partial class CustomerViewModel : BaseViewModel
     {
         UnitOfWork = unitOfWork;
         Customers = new ObservableCollection<Customer>(UnitOfWork.Customers.FindAll());
+        SelectedCustomer = Customers[0];
 
         UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
         DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
+        
     }
 
     private void DeleteCustomer()

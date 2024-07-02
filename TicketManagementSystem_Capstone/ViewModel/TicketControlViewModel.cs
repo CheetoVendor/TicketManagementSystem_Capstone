@@ -17,11 +17,15 @@ namespace TicketManagementSystem_Capstone.ViewModel
         public Ticket _SelectedTicket;
 
         [ObservableProperty]
-        public Customer _SelectedCustomer;
+        public Customer? _SelectedCustomer;
 
         [ObservableProperty]
         public List<string> _Groups = new List<string> { "Tech Support", "Maintenance Team" };
-
+        [ObservableProperty]
+        public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
+        "Pending Customer", "On Hold", "Resolved", "Closed"};
+        [ObservableProperty]
+        public List<string> _Priorities = new List<string> { "", "High", "Standard" };
         IUnitOfWork UnitOfWork { get; set; }
 
         public ICommand UpdateSelectedTicketCommand { get; }
@@ -32,7 +36,7 @@ namespace TicketManagementSystem_Capstone.ViewModel
         public TicketControlViewModel(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            UpdateTickets();
+            ShowOpenTickets();
             SelectedTicket = Tickets[0];
 
             UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
@@ -56,23 +60,25 @@ namespace TicketManagementSystem_Capstone.ViewModel
             if(MessageBox.Show("Are you sure you want to delete the selected ticket?", "Delete Ticket?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 UnitOfWork.Tickets.Delete(SelectedTicket);
-            }  
+            }
         }
 
         private void UpdateSelectedTicket()
         {
-            // Check for nulls / whitespaces
-        }
-
-        private void UpdateTickets()
-        {
-            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetOpen());
+            UnitOfWork.Tickets.Update(SelectedTicket);
         }
 
         // Updates customer depending on ticket selected
         partial void OnSelectedTicketChanged(Ticket value)
         {
-            SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
+            if(value != null)
+            {
+                SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
+            }
+            else
+            {
+                SelectedCustomer = null;
+            }
         }
     }
 }

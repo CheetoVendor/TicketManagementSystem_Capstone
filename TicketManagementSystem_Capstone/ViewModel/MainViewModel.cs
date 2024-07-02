@@ -1,59 +1,59 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 using TicketManagementSystem_Capstone.Services;
 
-namespace TicketManagementSystem_Capstone.ViewModel
+namespace TicketManagementSystem_Capstone.ViewModel;
+
+public partial class MainViewModel : BaseViewModel
 {
-    public partial class MainViewModel : BaseViewModel
+    private IVVMS _viewViewModelService;
+
+    [ObservableProperty]
+    public object? _CurrentTab;
+
+    [ObservableProperty]
+    public object? _CurrentTabView;
+
+    [ObservableProperty]
+    public int _Index = 0;
+
+    public ICommand ChangeViewCommand { get; }
+
+    public MainViewModel(VVMService viewViewModelService)
     {
-        #region Props
-        private IVVMS _viewViewModelService;
+        _viewViewModelService = viewViewModelService;
 
-        [ObservableProperty]
-        public BaseViewModel? _CurrentTab;
+        CurrentTab = _viewViewModelService.GetTicketTabControlViewModel();
+        CurrentTabView = _viewViewModelService.GetTicketTabControlView();
 
-        [ObservableProperty]
-        public object? _CurrentTabView;
+        ChangeViewCommand = new RelayCommand<string>(ChangeView);
+    }
 
-        [ObservableProperty]
-        public int _Index;
-
-        #endregion
-
-        #region Ctors
-        public MainViewModel(VVMService viewViewModelService)
+    private void ChangeView(string? tab)
+    {
+        switch (tab)
         {
-            _viewViewModelService = viewViewModelService;
+            case "Tickets":
+                CurrentTab = _viewViewModelService.GetTicketTabControlViewModel();
+                CurrentTabView = _viewViewModelService.GetTicketTabControlView();
+                break;
+            case "Customers":
+                CurrentTab = _viewViewModelService.GetCustomerTabControlViewModel();
+                CurrentTabView = _viewViewModelService.GetCustomerTabControlView();
+                break;
+            case "Reports":
 
-           //CurrentTab = _viewViewModelService.GetTicketControlViewModel();
-           //CurrentTabView = _viewViewModelService.GetTicketControlView();
+                break;
+            case "Administration":
 
-            CurrentTab = _viewViewModelService.GetCustomerViewModel();
-            CurrentTabView = _viewViewModelService.GetCustomerView();
-        }
-        #endregion
-
-
-
-        // Used to change view/viewmodel when tab is changed
-        partial void OnIndexChanged(int oldValue, int newValue)
-        {
-            switch (Index)
-            {
-                case 0:
-                    CurrentTab = _viewViewModelService.GetTicketControlViewModel();
-                    CurrentTabView = _viewViewModelService.GetTicketControlView();
-                    break;
-                case 1:
-                    CurrentTab = _viewViewModelService.GetCreateNewTicketViewModel();
-                    CurrentTabView = _viewViewModelService.GetCreateNewTicketView();
-                    break;
-                case 2:
-                    CurrentTab = _viewViewModelService.GetArchiveTicketViewModel();
-                    CurrentTabView = _viewViewModelService.GetArchiveTicketView();
-                    break;
-                default:
-                    break;
-            }
+                break;
+            default:
+                break;
         }
     }
+
+
+
+
 }

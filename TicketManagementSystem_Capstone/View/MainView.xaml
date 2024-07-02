@@ -7,51 +7,42 @@
         xmlns:viewmodel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="DuraTech TMS" Height="450" Width="800"
-        Background="#091832">
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="5"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="99*"/>
-            <ColumnDefinition Width="99*"/>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="19*"/>
-            <ColumnDefinition Width="99*"/>
-            <ColumnDefinition Width="5"/>
-        </Grid.ColumnDefinitions>
-        <!--Border-->
-        <Rectangle Grid.RowSpan="6" Grid.ColumnSpan="7" Fill="White"/>
-        <Menu Grid.Row="0" Grid.ColumnSpan="7" Grid.RowSpan="7">
-            <MenuItem Header="Tickets" Height="30"/>
-            <MenuItem Header="Customers" Height="30"/>
-            <MenuItem Header="Reports"/>
-            <MenuItem Header="Administration"/>
-        </Menu>
-
-        <Rectangle Fill="#6395f2" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="5" Margin="0,0,0,80" Grid.RowSpan="2"/>
-        <TabControl Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="#6395f2" SelectedIndex="{Binding Index}" >
-            <TabItem Header="Tickets">
-                <ContentControl Content="{Binding CurrentTabView}"/>
-            </TabItem>
-
-            <TabItem Header="Create Ticket">
-                <ContentControl Content="{Binding CurrentTabView}"/>
-            </TabItem>
+        Title="DuraTech TMS" Height="800" Width="900"
+        Background="Transparent" WindowStyle="None" AllowsTransparency="True">
+    <Border BorderBrush="#090909" BorderThickness="1" Background="#090909" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="99*"/>
+                <ColumnDefinition Width="99*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="99*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Row="0" Grid.ColumnSpan="7" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
+                <TextBlock Text="DuraTech Ticket Management System" Foreground="White" VerticalAlignment="Center"/>
+            </DockPanel> <!--TODO : ADD LOGO AND ADD BUTTONS-->
 
 
-            <TabItem Header="Archive">
-                <ContentControl Content="{Binding CurrentTabView}"/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+            <Menu Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="7" Background="#080808" Foreground="White">
+                <MenuItem Header="Tickets" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Tickets"/>
+                <MenuItem Header="Customers" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Customers"/>
+                <MenuItem Header="Reports" Command="{Binding ChangeViewCommand}" CommandParameter="Reports"/>
+                <MenuItem Header="Administration" Command="{Binding ChangeViewCommand}" CommandParameter="Administration"/>
+            </Menu>
+
+            <ContentControl Content="{Binding CurrentTabView}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
+        </Grid>
+    </Border>
 </Window>

@@ -40,6 +40,18 @@ namespace TicketManagementSystem_Capstone.Services
             return viewModel;
         }
 
+        public CustomerTabControlView GetCustomerTabControlView()
+        {
+            var view = (CustomerTabControlView)_host.Services.GetService(typeof(CustomerTabControlView));
+            return view;
+        }
+
+        public CustomerTabControlViewModel GetCustomerTabControlViewModel()
+        {
+            var viewModel = (CustomerTabControlViewModel)_host.Services.GetService(typeof(CustomerTabControlViewModel));
+            return viewModel;
+        }
+
         public CustomerView GetCustomerView()
         {
             var view = (CustomerView)_host.Services.GetService(typeof(CustomerView));
@@ -85,6 +97,18 @@ namespace TicketManagementSystem_Capstone.Services
         public TicketControlViewModel GetTicketControlViewModel()
         {
             var viewModel = (TicketControlViewModel)_host.Services.GetService(typeof(TicketControlViewModel));
+            return viewModel;
+        }
+
+        public TicketTabControlView GetTicketTabControlView()
+        {
+            var view = (TicketTabControlView)_host.Services.GetService(typeof(TicketTabControlView));
+            return view;
+        }
+
+        public TicketTabControlViewModel GetTicketTabControlViewModel()
+        {
+            var viewModel = (TicketTabControlViewModel)_host.Services.GetService(typeof(TicketTabControlViewModel));
             return viewModel;
         }
     }
