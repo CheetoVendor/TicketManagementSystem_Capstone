@@ -16,4 +16,17 @@ public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
         return dbContext.Customer.FirstOrDefault(x => x.Id == id);
     }
+
+    public int AddCustomer(Customer customer)
+    {
+        using(dbContext)
+        {
+            int i = dbContext.Customer.Add(customer).Entity.Id;
+            dbContext.SaveChanges();
+            return i;
+        }
+        
+    }
+
+
 }

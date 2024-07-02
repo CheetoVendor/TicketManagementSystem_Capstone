@@ -11,9 +11,4 @@ public class Ticket
     public DateTime Updated_Date { get; set; }
     public string Assigned_To { get; set; }
 
-    public Ticket()
-    {
-        
-    }
-
 }

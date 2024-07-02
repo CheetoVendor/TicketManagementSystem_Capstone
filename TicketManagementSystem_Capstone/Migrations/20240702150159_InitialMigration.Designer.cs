@@ -12,8 +12,8 @@ using TicketManagementSystem_Capstone.Data;
 namespace TicketManagementSystem_Capstone.Migrations
 {
     [DbContext(typeof(DuraTechDbContext))]
-    [Migration("20240625180537_InitialCreation")]
-    partial class InitialCreation
+    [Migration("20240702150159_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,14 @@ namespace TicketManagementSystem_Capstone.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -45,6 +53,14 @@ namespace TicketManagementSystem_Capstone.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -107,15 +123,15 @@ namespace TicketManagementSystem_Capstone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Group")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Last_Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Team")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

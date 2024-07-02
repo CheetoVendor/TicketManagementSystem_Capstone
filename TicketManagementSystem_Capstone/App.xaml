@@ -51,8 +51,8 @@
         <!--TextBox Style -->
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="MaxWidth" Value="120"/>
             <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MaxHeight" Value="20"/>
         </Style>
         <!-- TODO: Style your tables and reports in here -->
     </Application.Resources>

@@ -6,5 +6,5 @@ public interface ICustomerRepository : IRepository<Customer>
 {
     public Customer GetCustomerById(int id);
 
-
+    public int AddCustomer(Customer customer);
 }

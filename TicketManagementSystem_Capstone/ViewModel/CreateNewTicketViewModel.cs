@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
+using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
 namespace TicketManagementSystem_Capstone.ViewModel;
@@ -51,12 +52,32 @@ public partial class CreateNewTicketViewModel : BaseViewModel
         // Set Commands
         ClearCommand = new RelayCommand(Clear);
         CreateTicketCommand = new RelayCommand(CreateTicket);
-
     }
 
     public void CreateTicket()
     {
-        // Check if Customer exists..  
+        // Todo - Add check for nulls and white spaces. 
+
+        // Create Customer
+        int id = UnitOfWork.Customers.AddCustomer(new Customer
+        {
+            Name = CustomerName,
+            Email = Email,
+            Phone = Phone,
+            Is_Priority = Priority == "High" ? 1 : 0,
+        });
+
+        // Create Ticket
+        UnitOfWork.Tickets.Add(new Ticket
+        {
+            Customer_Id = id,
+            Title = Title,
+            Description = Description,
+            Status = Status,
+            Created_Date = DateTime.Now, // Todo - Change later to get user time zone
+            Updated_Date = DateTime.Now,
+            Assigned_To = AssignedTo
+        });
     }
 
     public void Clear()
@@ -71,5 +92,4 @@ public partial class CreateNewTicketViewModel : BaseViewModel
         Email = "";
     }
 
-    
 }

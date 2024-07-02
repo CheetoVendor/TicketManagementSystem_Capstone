@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TicketManagementSystem_Capstone.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreation : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,11 @@ namespace TicketManagementSystem_Capstone.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Is_Priority = table.Column<int>(type: "int", nullable: false)
+                    Is_Priority = table.Column<int>(type: "int", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,7 +60,7 @@ namespace TicketManagementSystem_Capstone.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     First_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Last_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Group = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Team = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -16,5 +16,8 @@ namespace TicketManagementSystem_Capstone.Services
 
         ArchiveTicketView GetArchiveTicketView();
         ArchiveTicketViewModel GetArchiveTicketViewModel();
+
+        CustomerView GetCustomerView();
+        CustomerViewModel GetCustomerViewModel();
     }
 }

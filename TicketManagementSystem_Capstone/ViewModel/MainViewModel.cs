@@ -24,8 +24,11 @@ namespace TicketManagementSystem_Capstone.ViewModel
         {
             _viewViewModelService = viewViewModelService;
 
-            CurrentTab = _viewViewModelService.GetTicketControlViewModel();
-            CurrentTabView = _viewViewModelService.GetTicketControlView();
+           //CurrentTab = _viewViewModelService.GetTicketControlViewModel();
+           //CurrentTabView = _viewViewModelService.GetTicketControlView();
+
+            CurrentTab = _viewViewModelService.GetCustomerViewModel();
+            CurrentTabView = _viewViewModelService.GetCustomerView();
         }
         #endregion
 

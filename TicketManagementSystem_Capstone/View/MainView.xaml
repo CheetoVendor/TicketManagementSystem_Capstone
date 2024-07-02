@@ -11,8 +11,8 @@
         Background="#091832">
 
     <Grid>
-
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -22,37 +22,24 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="99*"/>
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
+        <!--Border-->
+        <Rectangle Grid.RowSpan="6" Grid.ColumnSpan="7" Fill="White"/>
+        <Menu Grid.Row="0" Grid.ColumnSpan="7" Grid.RowSpan="7">
+            <MenuItem Header="Tickets" Height="30"/>
+            <MenuItem Header="Customers" Height="30"/>
+            <MenuItem Header="Reports"/>
+            <MenuItem Header="Administration"/>
+        </Menu>
 
-        <!--Left Side-->
-        <Label Content="LOGO WILL GO HERE" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Background="#6395f2"/>
-        <ListView x:Name="NavigationList"
-                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="4"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.CanContentScroll="False"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-            <ListViewItem>
-                <Button Content="Tickets"
-                        Margin="-8,-5,0,0"
-                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                        Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"/>
-            </ListViewItem>
-            <ListViewItem>
-                <Button Content="Customers"
-                        Margin="-8,-5,0,0"
-                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                        Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"
-                        />
-
-            </ListViewItem>
-        </ListView>
-        <Rectangle Fill="#6395f2" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <TabControl Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="#6395f2" SelectedIndex="{Binding Index}" >
+        <Rectangle Fill="#6395f2" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="5" Margin="0,0,0,80" Grid.RowSpan="2"/>
+        <TabControl Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="#6395f2" SelectedIndex="{Binding Index}" >
             <TabItem Header="Tickets">
                 <ContentControl Content="{Binding CurrentTabView}"/>
             </TabItem>
@@ -60,7 +47,7 @@
             <TabItem Header="Create Ticket">
                 <ContentControl Content="{Binding CurrentTabView}"/>
             </TabItem>
-            
+
 
             <TabItem Header="Archive">
                 <ContentControl Content="{Binding CurrentTabView}"/>

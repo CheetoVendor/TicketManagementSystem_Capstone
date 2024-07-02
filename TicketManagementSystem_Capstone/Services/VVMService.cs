@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
 
@@ -36,6 +37,18 @@ namespace TicketManagementSystem_Capstone.Services
         public CreateNewTicketViewModel GetCreateNewTicketViewModel()
         {
             var viewModel = (CreateNewTicketViewModel)_host.Services.GetService(typeof(CreateNewTicketViewModel));
+            return viewModel;
+        }
+
+        public CustomerView GetCustomerView()
+        {
+            var view = (CustomerView)_host.Services.GetService(typeof(CustomerView));
+            return view;
+        }
+
+        public CustomerViewModel GetCustomerViewModel()
+        {
+            var viewModel = (CustomerViewModel)_host.Services.GetService(typeof(CustomerViewModel));
             return viewModel;
         }
 
