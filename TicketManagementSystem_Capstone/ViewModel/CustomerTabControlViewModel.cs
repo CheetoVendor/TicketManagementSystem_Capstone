@@ -10,8 +10,10 @@ using TicketManagementSystem_Capstone.Services;
 
 namespace TicketManagementSystem_Capstone.ViewModel
 {
-    public partial class CustomerTabControlViewModel : BaseViewModel
+    public partial class CustomerTabControlViewModel : BaseViewModel, IBaseTabViewModel
     {
+        public string TabName { get; set; } = "Customers";
+
         [ObservableProperty]
         public object? _SelectedTab;
 

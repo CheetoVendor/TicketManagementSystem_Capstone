@@ -85,21 +85,21 @@
                         Grid.ColumnSpan="2"/>
                 <!-- Ticket Title-->
                 <Label Content="Title:" Grid.Row="1"/>
-                <TextBox Text="{Binding SelectedTicket.Title}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding Title}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"/>
                 <!-- Description -->
                 <Label Content="Description:" Grid.Row="2"/>
-                <TextBox Text="{Binding SelectedTicket.Description}" Grid.Row="2" Grid.Column="1"
+                <TextBox Text="{Binding Description}" Grid.Row="2" Grid.Column="1"
                          Grid.ColumnSpan="2" HorizontalAlignment="Left"
              TextWrapping="Wrap"/>
 
                 <!--Ticket Status-->
                 <Label Content="Status:" Grid.Row="3"/>
-                <ComboBox  ItemsSource="{Binding Statuses}"  SelectedItem="{Binding SelectedTicket.Status}"
+                <ComboBox  ItemsSource="{Binding Statuses}"  SelectedItem="{Binding Status}"
                Grid.Row="3" Grid.Column="1" MinWidth="100" HorizontalAlignment="Left"/>
 
                 <!--Ticket Assigned To-->
                 <Label Content="Assigned To:" Grid.Row="4"/>
-                <ComboBox ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedTicket.Assigned_To}"
+                <ComboBox ItemsSource="{Binding Groups}" SelectedItem="{Binding AssignedTo}"
                             Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Height="20"/>
                 <Label Content="Created Date:"
                        Grid.Row="5"/>

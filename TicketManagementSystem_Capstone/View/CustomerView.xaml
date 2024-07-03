@@ -46,39 +46,40 @@
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Name:"/>
-                <TextBox Text="{Binding SelectedCustomer.Name}"/>
+                <TextBox Text="{Binding CustomerName}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Email:"/>
-                <TextBox Text="{Binding SelectedCustomer.Email}"/>
+                <TextBox Text="{Binding CustomerEmail}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Phone:"/>
-                <TextBox Text="{Binding SelectedCustomer.Phone}"/>
+                <TextBox Text="{Binding CustomerPhone}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Priority:"/>
-                <ComboBox ItemsSource="{Binding Priorities}"/>
+                <ComboBox ItemsSource="{Binding Priorities}"
+                          SelectedItem="{Binding CustomerPriority}"/>
             </StackPanel>
             <!-- Address Information -->
             <StackPanel Orientation="Horizontal">
                 <Label Content="Address:"/>
-                <TextBox Text="{Binding SelectedCustomer.Address}"/>
+                <TextBox Text="{Binding CustomerAddress}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="State:"/>
-                <TextBox Text="{Binding SelectedCustomer.State}"/>
+                <TextBox Text="{Binding CustomerState}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="City:"/>
-                <TextBox Text="{Binding SelectedCustomer.City}"/>
+                <TextBox Text="{Binding CustomerCity}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Zip Code:"/>
-                <TextBox Text="{Binding SelectedCustomer.Zip}"/>
+                <TextBox Text="{Binding CustomerZip}"/>
             </StackPanel>
         </StackPanel>
         

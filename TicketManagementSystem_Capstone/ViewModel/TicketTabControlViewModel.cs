@@ -10,8 +10,9 @@ using TicketManagementSystem_Capstone.Services;
 
 namespace TicketManagementSystem_Capstone.ViewModel
 {
-    public partial class TicketTabControlViewModel : BaseViewModel
+    public partial class TicketTabControlViewModel : BaseViewModel, IBaseTabViewModel
     {
+        public string TabName { get; set; } = "Tickets";
 
         [ObservableProperty]
         public object? _SelectedTab;
@@ -24,6 +25,8 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         IUnitOfWork _UnitOfWork { get; set; }
         IVVMS _ViewViewModelService { get; set; }
+        
+
         public TicketTabControlViewModel(IUnitOfWork unitOfWork, VVMService viewViewmodelService)
         {
             _UnitOfWork = unitOfWork;

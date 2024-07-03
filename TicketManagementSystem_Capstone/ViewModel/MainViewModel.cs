@@ -10,7 +10,7 @@ public partial class MainViewModel : BaseViewModel
     private IVVMS _viewViewModelService;
 
     [ObservableProperty]
-    public object? _CurrentTab;
+    public IBaseTabViewModel _CurrentTab;
 
     [ObservableProperty]
     public object? _CurrentTabView;
@@ -30,8 +30,15 @@ public partial class MainViewModel : BaseViewModel
         ChangeViewCommand = new RelayCommand<string>(ChangeView);
     }
 
+    // Changes the View and View model whenever a tab is selected.
     private void ChangeView(string? tab)
     {
+        // Used so it doesnt refresh the tab if you click on the same one.
+        if(CurrentTab.TabName == tab)
+        {
+            return;
+        }
+
         switch (tab)
         {
             case "Tickets":
@@ -52,8 +59,4 @@ public partial class MainViewModel : BaseViewModel
                 break;
         }
     }
-
-
-
-
 }

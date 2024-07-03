@@ -19,6 +19,22 @@ namespace TicketManagementSystem_Capstone.ViewModel
         [ObservableProperty]
         public Customer? _SelectedCustomer;
 
+        #region Ticket Fields
+        [ObservableProperty]
+        public string _Title;
+
+        [ObservableProperty]
+        public string _Description;
+
+        [ObservableProperty]
+        public string _Status;
+
+        [ObservableProperty]
+        public string _AssignedTo;
+
+        #endregion
+
+        #region Combo Box Options
         [ObservableProperty]
         public List<string> _Groups = new List<string> { "Tech Support", "Maintenance Team" };
         [ObservableProperty]
@@ -26,6 +42,8 @@ namespace TicketManagementSystem_Capstone.ViewModel
         "Pending Customer", "On Hold", "Resolved", "Closed"};
         [ObservableProperty]
         public List<string> _Priorities = new List<string> { "", "High", "Standard" };
+        #endregion
+
         IUnitOfWork UnitOfWork { get; set; }
 
         public ICommand UpdateSelectedTicketCommand { get; }
@@ -37,8 +55,9 @@ namespace TicketManagementSystem_Capstone.ViewModel
         {
             UnitOfWork = unitOfWork;
             ShowOpenTickets();
-            SelectedTicket = Tickets[0];
+            SelectedTicket = Tickets.FirstOrDefault();
 
+            // Init Commands
             UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
             DeleteSelectedTicketCommand = new RelayCommand(DeleteSelectedTicket);
             ShowOpenTicketsCommand = new RelayCommand(ShowOpenTickets);
@@ -60,12 +79,25 @@ namespace TicketManagementSystem_Capstone.ViewModel
             if(MessageBox.Show("Are you sure you want to delete the selected ticket?", "Delete Ticket?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 UnitOfWork.Tickets.Delete(SelectedTicket);
+                UnitOfWork.Commit();
+                ShowOpenTickets(); // TODO - Change to update depending on radio box selected
             }
         }
 
+        // Updates the ticket, adds to db and saves changes.
         private void UpdateSelectedTicket()
         {
+            // Apply changes on fields to ticket
+            SelectedTicket.Title = Title;
+            SelectedTicket.Description = Description;
+            SelectedTicket.Status = Status;
+            SelectedTicket.Assigned_To = AssignedTo;
+            SelectedTicket.Updated_Date = DateTime.Now;
+
+
             UnitOfWork.Tickets.Update(SelectedTicket);
+            UnitOfWork.Commit();
+            ShowOpenTickets();
         }
 
         // Updates customer depending on ticket selected
@@ -74,6 +106,13 @@ namespace TicketManagementSystem_Capstone.ViewModel
             if(value != null)
             {
                 SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
+
+
+                // Update Ticket Fields
+                Title = value.Title;
+                Description = value.Description;
+                Status = value.Status;
+                AssignedTo = value.Assigned_To;
             }
             else
             {

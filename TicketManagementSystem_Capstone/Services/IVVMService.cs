@@ -21,10 +21,10 @@ namespace TicketManagementSystem_Capstone.Services
         CustomerViewModel GetCustomerViewModel();
 
         TicketTabControlView GetTicketTabControlView();
-        TicketTabControlViewModel GetTicketTabControlViewModel();
+        IBaseTabViewModel GetTicketTabControlViewModel();
 
         CustomerTabControlView GetCustomerTabControlView();
 
-        CustomerTabControlViewModel GetCustomerTabControlViewModel();
+        IBaseTabViewModel GetCustomerTabControlViewModel();
     }
 }
