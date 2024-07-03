@@ -7,109 +7,96 @@ namespace TicketManagementSystem_Capstone.Services
 {
     public class VVMService : IVVMS
     {
-        private Dictionary<Type, Type> viewViewModels = new Dictionary<Type, Type>();
+        private readonly IServiceProvider _serviceProvider;
 
-        private IHost _host;
-        // Todo edit later to throw into dictionary and then edit methods to pull from view model
-        public VVMService(IHost host)
+        public VVMService(IServiceProvider serviceProvider)
         {
-            _host = host;
+            _serviceProvider = serviceProvider;
+        }
+
+        public T GetService<T>()
+        {
+            return _serviceProvider.GetService<T>();
         }
 
         public ArchiveTicketView GetArchiveTicketView()
         {
-            var view = (ArchiveTicketView)_host.Services.GetService(typeof(ArchiveTicketView));
-            return view;
+            return GetService<ArchiveTicketView>();
         }
 
         public ArchiveTicketViewModel GetArchiveTicketViewModel()
         {
-            var viewModel = (ArchiveTicketViewModel)_host.Services.GetService(typeof(ArchiveTicketViewModel));
-            return viewModel;
+            return GetService<ArchiveTicketViewModel>();
         }
 
         public CreateNewTicketView GetCreateNewTicketView()
         {
-           var view = (CreateNewTicketView)_host.Services.GetService(typeof(CreateNewTicketView));
-            return view;
+           return GetService<CreateNewTicketView>();
         }
 
         public CreateNewTicketViewModel GetCreateNewTicketViewModel()
         {
-            var viewModel = (CreateNewTicketViewModel)_host.Services.GetService(typeof(CreateNewTicketViewModel));
-            return viewModel;
+            return GetService<CreateNewTicketViewModel>();
         }
 
         public CustomerTabControlView GetCustomerTabControlView()
         {
-            var view = (CustomerTabControlView)_host.Services.GetService(typeof(CustomerTabControlView));
-            return view;
+            return GetService<CustomerTabControlView>();
         }
 
         public IBaseTabViewModel GetCustomerTabControlViewModel()
         {
-            var viewModel = (CustomerTabControlViewModel)_host.Services.GetService(typeof(CustomerTabControlViewModel));
-            return viewModel;
+            return GetService<CustomerTabControlViewModel>();
         }
 
         public CustomerView GetCustomerView()
         {
-            var view = (CustomerView)_host.Services.GetService(typeof(CustomerView));
-            return view;
+            return GetService<CustomerView>();
         }
 
         public CustomerViewModel GetCustomerViewModel()
         {
-            var viewModel = (CustomerViewModel)_host.Services.GetService(typeof(CustomerViewModel));
-            return viewModel;
+            return GetService<CustomerViewModel>();
         }
 
         public LoginView GetLoginView()
         {
-            var view = (LoginView)_host.Services.GetService(typeof(LoginView));
-            return view;
+            return GetService<LoginView>();
         }
 
         public LoginViewModel GetLoginViewModel()
         {
-           var viewModel = (LoginViewModel)_host.Services.GetService(typeof(LoginViewModel));
-            return viewModel;
+           return GetService<LoginViewModel>();
         }
 
         public MainView GetMainView()
         {
-            var view = (MainView)_host.Services.GetService(typeof(MainView));
-            return view;
+            return GetService<MainView>();
         }
 
         public MainViewModel GetMainViewModel()
         {
-            var viewModel = (MainViewModel)_host.Services.GetService(typeof(MainViewModel));
-            return viewModel;
+            return GetService<MainViewModel>();
         }
 
         public TicketControlView GetTicketControlView()
         {
-            var view = (TicketControlView)_host.Services.GetService(typeof (TicketControlView));
-            return view;
+            return GetService<TicketControlView>();
         }
 
         public TicketControlViewModel GetTicketControlViewModel()
         {
-            var viewModel = (TicketControlViewModel)_host.Services.GetService(typeof(TicketControlViewModel));
-            return viewModel;
+            return GetService<TicketControlViewModel>();
         }
 
         public TicketTabControlView GetTicketTabControlView()
         {
-            var view = (TicketTabControlView)_host.Services.GetService(typeof(TicketTabControlView));
-            return view;
+            return GetService<TicketTabControlView>();
         }
 
         public IBaseTabViewModel GetTicketTabControlViewModel()
         {
-            var viewModel = (TicketTabControlViewModel)_host.Services.GetService(typeof(TicketTabControlViewModel));
-            return viewModel;
+            return GetService<TicketTabControlViewModel>();
         }
     }
 }
