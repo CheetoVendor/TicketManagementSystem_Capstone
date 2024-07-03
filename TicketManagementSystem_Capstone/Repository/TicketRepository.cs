@@ -6,7 +6,7 @@ namespace TicketManagementSystem_Capstone.Repository;
 
 public class TicketRepository : Repository<Ticket>, ITicketRepository
 {
-    DuraTechDbContext dbContext;
+    public DuraTechDbContext dbContext;
     public TicketRepository(DuraTechDbContext dbContext) : base(dbContext)
     {
         this.dbContext = dbContext;
@@ -29,6 +29,7 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "Open").ToList();
     }
+
     public List<Ticket> GetInProgress()
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "In Progress").ToList();

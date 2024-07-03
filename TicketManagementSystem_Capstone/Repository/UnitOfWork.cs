@@ -3,34 +3,30 @@ using TicketManagementSystem_Capstone.Repository.Interfaces;
 
 namespace TicketManagementSystem_Capstone.Repository
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable, IAsyncDisposable
+    public class UnitOfWork : IUnitOfWork
     {
-        public ICustomerRepository Customers { get; }
-        public ITicketRepository Tickets { get; set; }
-        public IUserRepository Users { get; set; }
+        public ICustomerRepository Customers { get; private set; }
+        public ITicketRepository Tickets { get; private set; }
+        public IUserRepository Users { get; private set; }
 
-        public DuraTechDbContext DbContext { get; set; }
+        private DuraTechDbContext _dbContext;
 
         public UnitOfWork(DuraTechDbContext dbContext)
         {
-            DbContext = dbContext;
-            Customers = new CustomerRepository(dbContext);
-            Tickets = new TicketRepository(dbContext);
+            _dbContext = dbContext;
+            Customers = new CustomerRepository(_dbContext);
+            Tickets = new TicketRepository(_dbContext);
+            Users = new UserRepository(_dbContext);
         }
 
         public void Commit()
         {
-            DbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public void Dispose()
         {
-            DbContext.Dispose();
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            await DbContext.DisposeAsync();
+            _dbContext.Dispose();
         }
     }
 }

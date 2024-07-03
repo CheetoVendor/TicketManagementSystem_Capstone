@@ -29,6 +29,14 @@ public partial class CreateNewTicketViewModel : BaseViewModel
     public string? _Phone;
     [ObservableProperty]
     public string? _Email;
+    [ObservableProperty]
+    public string? _Address;
+    [ObservableProperty]
+    public string? _City;
+    [ObservableProperty]
+    public string? _State;
+    [ObservableProperty]
+    public string? _Zip;
 
     [ObservableProperty]
     public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
@@ -42,7 +50,8 @@ public partial class CreateNewTicketViewModel : BaseViewModel
     public ICommand ClearCommand { get; }
     public ICommand CreateTicketCommand { get; }
 
-    IUnitOfWork UnitOfWork { get; set; }
+    private readonly IUnitOfWork UnitOfWork;
+
     #endregion
     public CreateNewTicketViewModel(IUnitOfWork unitOfWork)
     {
@@ -65,6 +74,11 @@ public partial class CreateNewTicketViewModel : BaseViewModel
             Email = Email,
             Phone = Phone,
             Is_Priority = Priority == "High" ? 1 : 0,
+            Address = Address,
+            State = State,
+            City = City,
+            Zip = Zip
+
         });
 
         // Create Ticket
@@ -78,6 +92,8 @@ public partial class CreateNewTicketViewModel : BaseViewModel
             Updated_Date = DateTime.Now,
             Assigned_To = AssignedTo
         });
+
+        UnitOfWork.Commit();
     }
 
     public void Clear()
@@ -90,6 +106,10 @@ public partial class CreateNewTicketViewModel : BaseViewModel
         CustomerName = "";
         Phone = "";
         Email = "";
+        Address = "";
+        City = "";
+        State = "";
+        Zip = "";
     }
 
 }

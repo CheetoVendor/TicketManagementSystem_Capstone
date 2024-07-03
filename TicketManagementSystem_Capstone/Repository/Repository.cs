@@ -6,7 +6,7 @@ namespace TicketManagementSystem_Capstone.Repository;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    protected readonly DuraTechDbContext _dbContext;
+    public DuraTechDbContext _dbContext;
 
     public Repository(DuraTechDbContext dbContext)
     {
@@ -21,7 +21,6 @@ public class Repository<T> : IRepository<T> where T : class
     public void Delete(T entity)
     {
         _dbContext.Remove(entity);
-        // Wont work until save changes is called. Its getting the ticket so no need to delete. TEst later
     }
 
     public IEnumerable<T> FindAll()
