@@ -19,6 +19,8 @@ namespace TicketManagementSystem_Capstone.ViewModel
         [ObservableProperty]
         public Customer? _SelectedCustomer;
 
+        public string? _filterString = "All"; 
+
         #region Ticket Fields
         [ObservableProperty]
         public string _Title;
@@ -31,12 +33,11 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         [ObservableProperty]
         public string _AssignedTo;
-
         #endregion
 
         #region Combo Box Options
         [ObservableProperty]
-        public List<string> _Groups = new List<string> { "Tech Support", "Maintenance Team" };
+        public List<string> _Groups = new List<string> { "","Tech Support", "Maintenance Team" };
         [ObservableProperty]
         public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
         "Pending Customer", "On Hold", "Resolved", "Closed"};
@@ -48,30 +49,39 @@ namespace TicketManagementSystem_Capstone.ViewModel
 
         public ICommand UpdateSelectedTicketCommand { get; }
         public ICommand DeleteSelectedTicketCommand { get; }
-        public ICommand ShowOpenTicketsCommand { get; }
-        public ICommand ShowAssignedTicketsCommand { get; }
+        public ICommand FilterTicketsCommand { get; }
 
         public TicketControlViewModel(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            ShowOpenTickets();
-            SelectedTicket = Tickets.FirstOrDefault();
+            
 
             // Init Commands
             UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
             DeleteSelectedTicketCommand = new RelayCommand(DeleteSelectedTicket);
-            ShowOpenTicketsCommand = new RelayCommand(ShowOpenTickets);
-            ShowAssignedTicketsCommand = new RelayCommand(ShowAssignedTickets);
+            FilterTicketsCommand = new RelayCommand<string>(FilterTickets);
+
+            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
         }
 
-        private void ShowAssignedTickets()
+        private void FilterTickets(string? value)
         {
-            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetAssigned("Maintenance Team")); // Todo(L) - change to current users team for argument
-        }
+            ClearTicketInformation();
+            SelectedTicket = null;
+            switch(value)
+            {
+                case "All":
+                    Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
+                    break;
+                case "Open":
+                    Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetOpen());
+                    break;
+                case "Assigned":
+                    Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetAssigned("Maintenance Team")); // Todo(L) - change to current users team for argument
+                    break;
+            }
 
-        private void ShowOpenTickets()
-        {
-            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetOpen());
+            _filterString = value;
         }
 
         private void DeleteSelectedTicket()
@@ -80,7 +90,7 @@ namespace TicketManagementSystem_Capstone.ViewModel
             {
                 UnitOfWork.Tickets.Delete(SelectedTicket);
                 UnitOfWork.Commit();
-                ShowOpenTickets(); // TODO - Change to update depending on radio box selected
+                FilterTickets(_filterString);
             }
         }
 
@@ -94,10 +104,10 @@ namespace TicketManagementSystem_Capstone.ViewModel
             SelectedTicket.Assigned_To = AssignedTo;
             SelectedTicket.Updated_Date = DateTime.Now;
 
-
+            // Update ticket and update tickets collection
             UnitOfWork.Tickets.Update(SelectedTicket);
             UnitOfWork.Commit();
-            ShowOpenTickets();
+            FilterTickets(_filterString);
         }
 
         // Updates customer depending on ticket selected
@@ -106,7 +116,6 @@ namespace TicketManagementSystem_Capstone.ViewModel
             if(value != null)
             {
                 SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
-
 
                 // Update Ticket Fields
                 Title = value.Title;
@@ -118,6 +127,14 @@ namespace TicketManagementSystem_Capstone.ViewModel
             {
                 SelectedCustomer = null;
             }
+        }
+
+        private void ClearTicketInformation()
+        {
+            Title = "";
+            Description = "";
+            Status = "";
+            AssignedTo = "";
         }
     }
 }

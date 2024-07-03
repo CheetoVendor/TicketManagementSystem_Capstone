@@ -30,12 +30,19 @@
             
         <!--Radio Buttons-->
         <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
-            <RadioButton Content="Open"
-                IsChecked="True"
-                Margin="0,0,5,0"
-                         Command="{Binding ShowOpenTicketsCommand}" />
+                <RadioButton Content="All"
+                             Margin="5,5"
+                             IsChecked="True"
+                             Command="{Binding FilterTicketsCommand}"
+                             CommandParameter="All"/>
+                <RadioButton Content="Open"
+                         Margin="5,5"
+                         Command="{Binding FilterTicketsCommand}"
+                             CommandParameter="Open"/>
             <RadioButton Content="Assigned"
-                         Command="{Binding ShowAssignedTicketsCommand}" />
+                         Margin="5,5"
+                         Command="{Binding FilterTicketsCommand}"
+                         CommandParameter="Assigned"/>
         </StackPanel>
         
         <!--Data Grid-->

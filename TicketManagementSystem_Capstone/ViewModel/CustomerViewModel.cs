@@ -60,6 +60,8 @@ public partial class CustomerViewModel : BaseViewModel
         if(result == MessageBoxResult.Yes)
         {
             UnitOfWork.Customers.Delete(SelectedCustomer);
+            UnitOfWork.Commit();
+            Customers = new ObservableCollection<Customer>(UnitOfWork.Customers.FindAll());
         }
     }
 

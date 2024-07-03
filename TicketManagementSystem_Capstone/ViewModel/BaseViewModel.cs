@@ -2,6 +2,6 @@
 
 namespace TicketManagementSystem_Capstone.ViewModel;
 
-public partial class BaseViewModel : ObservableObject
+public partial class BaseViewModel :  ObservableValidator
 {
 }

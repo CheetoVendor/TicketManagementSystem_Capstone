@@ -98,5 +98,15 @@ namespace TicketManagementSystem_Capstone.Services
         {
             return GetService<TicketTabControlViewModel>();
         }
+
+        public CreateNewCustomerView GetCreateNewCustomerView()
+        {
+            return GetService<CreateNewCustomerView>();
+        }
+
+        public CreateNewCustomerViewModel GetCreateNewCustomerViewModel()
+        {
+            return GetService<CreateNewCustomerViewModel>();
+        }
     }
 }
