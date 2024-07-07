@@ -4,58 +4,58 @@ using System.Windows.Input;
 using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
-namespace TicketManagementSystem_Capstone.ViewModel
+namespace TicketManagementSystem_Capstone.ViewModel;
+// https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observablerecipient
+// Use to handle login ^
+public partial class LoginViewModel : BaseViewModel
 {
-    public partial class LoginViewModel : BaseViewModel
+    [ObservableProperty]
+    public string? _email;
+
+    [ObservableProperty]
+    public string? _password;
+
+    [ObservableProperty]
+    public string? _errorMessage;
+
+    public ICommand LoginCommand { get; }
+    private readonly IUnitOfWork _unitOfWork;
+
+    public LoginViewModel(IUnitOfWork unitOfWork)
     {
-        [ObservableProperty] 
-        public string? _email; 
 
-        [ObservableProperty]
-        public string? _password;
+        this._unitOfWork = unitOfWork as UnitOfWork;
+        LoginCommand = new RelayCommand(Login);
+    }
 
-        [ObservableProperty] 
-        public string? _errorMessage;
+    private void Login()
+    {
 
-        public ICommand LoginCommand { get; }
-        private readonly IUnitOfWork _unitOfWork;
-
-        public LoginViewModel(IUnitOfWork unitOfWork)
+        // get user id by email.
+        /*
+        if ()
         {
-
-            this._unitOfWork = unitOfWork as UnitOfWork;
-            LoginCommand = new RelayCommand(Login);
-        }
-
-        private void Login()
-        {
-            
-            // get user id by email.
-            /*
             if ()
             {
-                if ()
-                {
-                    // Todo(M) - do the navigation differently 
-                    var view1 = App._host.Services.GetRequiredService<LoginView>();
-                    view1.Visibility = Visibility.Hidden;
-                    
-                    var view2 = App._host.Services.GetService<MainView>();
-                    view2.Show();
-                }
-            }
-            else
-            {
+                // Todo(M) - do the navigation differently 
+                var view1 = App._host.Services.GetRequiredService<LoginView>();
+                view1.Visibility = Visibility.Hidden;
                 
+                var view2 = App._host.Services.GetService<MainView>();
+                view2.Show();
             }
-            */
-            // verify email and password match 
-            // TODO - Need to crypt/hash/salt passwords
-
-            // if so LOG IN AND MOVE TO MainWindow
-
-            // else print error
-           
         }
+        else
+        {
+            
+        }
+        */
+        // verify email and password match 
+        // TODO - Need to crypt/hash/salt passwords
+
+        // if so LOG IN AND MOVE TO MainWindow
+
+        // else print error
+
     }
 }

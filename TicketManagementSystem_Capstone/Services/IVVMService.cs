@@ -30,5 +30,13 @@ namespace TicketManagementSystem_Capstone.Services
         CreateNewCustomerView GetCreateNewCustomerView();
 
         CreateNewCustomerViewModel GetCreateNewCustomerViewModel();
+
+        ReportsTabControlView GetReportsTabControlView();
+
+        IBaseTabViewModel GetReportsTabControlViewModel();
+
+        AdministrationTabControlView GetAdministrationTabControlView();
+
+        IBaseTabViewModel GetAdministrationTabControlViewModel();
     }
 }

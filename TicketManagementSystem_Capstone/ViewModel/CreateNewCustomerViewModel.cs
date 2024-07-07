@@ -1,13 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
@@ -22,27 +15,57 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
     public List<string> _Priorities = new List<string> { "", "High", "Standard" };
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Customer name is required.")]
+    [MinLength(1, ErrorMessage = "")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _CustomerName;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Phone number is required.")]
+    [RegularExpression(@"^\(\d{3}\)-\d{3}-\d{4}$", ErrorMessage = "Phone number must be in the format (###)-###-####.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Phone;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Email is required.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Email;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Priority is required.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Priority;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Address is required.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Address;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "City is required.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _City;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "State is required.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _State;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Zip code is required.")]
+    [MinLength(5, ErrorMessage = "Zip code must be 5 numbers.")]
+    [MaxLength(5, ErrorMessage = "Zip code must be 5 numbers.")]
+    [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Zip;
-
-    // Error Handling 
-    public bool? HasErrors => Errors.Any();
-    private Dictionary<string, List<string>> Errors = new();
     
-
     public ICommand CreateCustomerCommand { get; }
     public ICommand ClearCommand { get; }
     public IUnitOfWork UnitOfWork { get; }
@@ -52,6 +75,8 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
         UnitOfWork = unitOfWork;
         CreateCustomerCommand = new RelayCommand(AddCustomer, CanAddCustomer);
         ClearCommand = new RelayCommand(Clear);
+
+        //ValidateAllProperties();
     }
 
     private void Clear()
@@ -64,6 +89,7 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
         City = "";
         State = "";
         Zip = "";
+        ClearErrors();
     }
 
     private void AddCustomer()
@@ -79,10 +105,25 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
             State = State,
             Zip = Zip
         });
+
+        UnitOfWork.Commit();
     }
 
-    private bool CanAddCustomer()
+    private bool CanAddCustomer() => !HasErrors;
+    
+
+    #region Validation
+    /*
+    partial void OnCustomerNameChanged(string? value)
     {
-        return !HasErrors;
+        ValidateProperty(CustomerName, nameof(CustomerName));
     }
+    partial void OnPhoneChanged(string? value)
+    {
+        ValidateProperty(Phone, nameof(Phone));
+    }
+    */
+   
+    #endregion
+
 }

@@ -50,10 +50,12 @@ public partial class MainViewModel : BaseViewModel
                 CurrentTabView = _viewViewModelService.GetCustomerTabControlView();
                 break;
             case "Reports":
-
+                CurrentTab = _viewViewModelService.GetReportsTabControlViewModel();
+                CurrentTabView = _viewViewModelService.GetReportsTabControlView();
                 break;
             case "Administration":
-
+                CurrentTab = _viewViewModelService.GetAdministrationTabControlViewModel();
+                CurrentTabView = _viewViewModelService.GetAdministrationTabControlView();
                 break;
             default:
                 break;
