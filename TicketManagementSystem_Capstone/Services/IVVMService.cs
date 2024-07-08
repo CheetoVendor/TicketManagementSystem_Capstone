@@ -1,50 +1,49 @@
 ﻿using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
 
-namespace TicketManagementSystem_Capstone.Services
+namespace TicketManagementSystem_Capstone.Services;
+
+public interface IVVMS
 {
-    public interface IVVMS
-    {
-        MainViewModel GetMainViewModel();
-        MainView GetMainView();
-        LoginView GetLoginView();
-        LoginViewModel GetLoginViewModel();
-        TicketControlView GetTicketControlView();
-        TicketControlViewModel GetTicketControlViewModel();
-        CreateNewTicketView GetCreateNewTicketView();
-        CreateNewTicketViewModel GetCreateNewTicketViewModel();
+    MainViewModel GetMainViewModel();
+    MainView GetMainView();
+    LoginView GetLoginView();
+    LoginViewModel GetLoginViewModel();
+    TicketControlView GetTicketControlView();
+    TicketControlViewModel GetTicketControlViewModel();
+    CreateNewTicketView GetCreateNewTicketView();
+    CreateNewTicketViewModel GetCreateNewTicketViewModel();
 
-        ArchiveTicketView GetArchiveTicketView();
-        ArchiveTicketViewModel GetArchiveTicketViewModel();
+    ArchiveTicketView GetArchiveTicketView();
+    ArchiveTicketViewModel GetArchiveTicketViewModel();
 
-        CustomerView GetCustomerView();
-        CustomerViewModel GetCustomerViewModel();
+    CustomerView GetCustomerView();
+    CustomerViewModel GetCustomerViewModel();
 
-        TicketTabControlView GetTicketTabControlView();
-        IBaseTabViewModel GetTicketTabControlViewModel();
+    TicketTabControlView GetTicketTabControlView();
+    IBaseTabViewModel GetTicketTabControlViewModel();
 
-        CustomerTabControlView GetCustomerTabControlView();
+    CustomerTabControlView GetCustomerTabControlView();
 
-        IBaseTabViewModel GetCustomerTabControlViewModel();
+    IBaseTabViewModel GetCustomerTabControlViewModel();
 
-        CreateNewCustomerView GetCreateNewCustomerView();
+    CreateNewCustomerView GetCreateNewCustomerView();
 
-        CreateNewCustomerViewModel GetCreateNewCustomerViewModel();
+    CreateNewCustomerViewModel GetCreateNewCustomerViewModel();
 
-        ReportsTabControlView GetReportsTabControlView();
+    ReportsTabControlView GetReportsTabControlView();
 
-        IBaseTabViewModel GetReportsTabControlViewModel();
+    IBaseTabViewModel GetReportsTabControlViewModel();
 
-        AdministrationTabControlView GetAdministrationTabControlView();
+    AdministrationTabControlView GetAdministrationTabControlView();
 
-        IBaseTabViewModel GetAdministrationTabControlViewModel();
+    IBaseTabViewModel GetAdministrationTabControlViewModel();
 
-        IBaseTabViewModel GetEmployeeViewModel();
+    IBaseTabViewModel GetEmployeeViewModel();
 
-        EmployeeView GetEmployeeView();
+    EmployeeView GetEmployeeView();
 
-        IBaseTabViewModel GetCreateEmployeeViewModel();
+    IBaseTabViewModel GetCreateEmployeeViewModel();
 
-        CreateEmployeeView GetCreateNewEmployeeView();
-    }
+    CreateEmployeeView GetCreateNewEmployeeView();
 }

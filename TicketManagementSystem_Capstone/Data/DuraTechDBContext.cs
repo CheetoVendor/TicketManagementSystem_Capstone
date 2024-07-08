@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using TicketManagementSystem_Capstone.Models;
 
 namespace TicketManagementSystem_Capstone.Data;

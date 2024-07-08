@@ -51,7 +51,8 @@
                   SelectionMode="Single"
                   SelectedItem="{Binding SelectedTicket}"
                   IsReadOnly="True"
-                  CanUserSortColumns="False"
+                  CanUserSortColumns="True"
+                  CanUserReorderColumns="False"
                   MinHeight="300"
                   >
         </DataGrid>

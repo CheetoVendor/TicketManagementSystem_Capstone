@@ -43,7 +43,8 @@
                       SelectedItem="{Binding SelectedUser}"
                       MinHeight="300"
                       IsReadOnly="True"
-                      CanUserSortColumns="False"
+                      CanUserSortColumns="True"
+                      CanUserReorderColumns="False"
                       />
         </StackPanel>
         

@@ -31,6 +31,7 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "Email is required.")]
+    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be valid.")]
     [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Email;
 
@@ -75,8 +76,6 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
         UnitOfWork = unitOfWork;
         CreateCustomerCommand = new RelayCommand(AddCustomer, CanAddCustomer);
         ClearCommand = new RelayCommand(Clear);
-
-        //ValidateAllProperties();
     }
 
     private void Clear()
@@ -94,6 +93,12 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
 
     private void AddCustomer()
     {
+        ValidateAllProperties();
+        if (HasErrors)
+        {
+            return;
+        }
+
         UnitOfWork.Customers.Add(new Customer
         {
             Name = CustomerName,
@@ -110,20 +115,5 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
     }
 
     private bool CanAddCustomer() => !HasErrors;
-    
-
-    #region Validation
-    /*
-    partial void OnCustomerNameChanged(string? value)
-    {
-        ValidateProperty(CustomerName, nameof(CustomerName));
-    }
-    partial void OnPhoneChanged(string? value)
-    {
-        ValidateProperty(Phone, nameof(Phone));
-    }
-    */
-   
-    #endregion
 
 }

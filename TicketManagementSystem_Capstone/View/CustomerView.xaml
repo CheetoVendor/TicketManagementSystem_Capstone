@@ -28,7 +28,8 @@
             <!-- Customer Data grid -->
             <DataGrid ItemsSource="{Binding Customers}" 
                       SelectedItem="{Binding SelectedCustomer}"
-                      IsReadOnly="True" CanUserSortColumns="False"
+                      IsReadOnly="True" CanUserSortColumns="True"
+                      CanUserReorderColumns="False"
                       MinHeight="300"/>
         </StackPanel>
             

@@ -56,7 +56,7 @@ public partial class CustomerViewModel : BaseViewModel
     {
         var result = MessageBox.Show("Are you sure you want to remove this customer?", "Delete?", MessageBoxButton.YesNoCancel);
 
-        if(result == MessageBoxResult.Yes)
+        if (result == MessageBoxResult.Yes)
         {
             UnitOfWork.Customers.Delete(SelectedCustomer);
             UnitOfWork.Commit();
@@ -84,7 +84,7 @@ public partial class CustomerViewModel : BaseViewModel
 
     partial void OnSelectedCustomerChanged(Customer value)
     {
-        if(value != null)
+        if (value != null)
         {
             // Update Customer Fields From Entity
             CustomerName = value.Name;

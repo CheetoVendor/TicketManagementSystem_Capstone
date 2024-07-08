@@ -18,10 +18,10 @@ public class CustomerRepository : Repository<Customer>, ICustomerRepository
     }
 
     public int AddCustomer(Customer customer)
-    {  
-            var entity = dbContext.Customer.Add(customer).Entity;
-            dbContext.SaveChanges();
-            return entity.Id;
+    {
+        var entity = dbContext.Customer.Add(customer).Entity;
+        dbContext.SaveChanges();
+        return entity.Id;
     }
 
 

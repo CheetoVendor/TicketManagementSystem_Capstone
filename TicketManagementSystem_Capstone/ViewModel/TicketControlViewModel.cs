@@ -6,135 +6,134 @@ using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
-namespace TicketManagementSystem_Capstone.ViewModel
+namespace TicketManagementSystem_Capstone.ViewModel;
+
+public partial class TicketControlViewModel : BaseViewModel
 {
-    public partial class TicketControlViewModel : BaseViewModel
+    [ObservableProperty]
+    public ObservableCollection<Ticket> _Tickets;
+
+    [ObservableProperty]
+    public Ticket _SelectedTicket;
+
+    [ObservableProperty]
+    public Customer? _SelectedCustomer;
+
+    public string? _filterString = "All";
+
+    #region Ticket Fields
+    [ObservableProperty]
+    public string _Title;
+
+    [ObservableProperty]
+    public string _Description;
+
+    [ObservableProperty]
+    public string _Status;
+
+    [ObservableProperty]
+    public string _AssignedTo;
+    #endregion
+
+    #region Combo Box Options
+    [ObservableProperty]
+    public List<string> _Groups = new List<string> { "", "Tech Support", "Maintenance Team" };
+    [ObservableProperty]
+    public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
+    "Pending Customer", "On Hold", "Resolved", "Closed"};
+    [ObservableProperty]
+    public List<string> _Priorities = new List<string> { "", "High", "Standard" };
+    #endregion
+
+    IUnitOfWork UnitOfWork { get; set; }
+
+    public ICommand UpdateSelectedTicketCommand { get; }
+    public ICommand DeleteSelectedTicketCommand { get; }
+    public ICommand FilterTicketsCommand { get; }
+
+    public TicketControlViewModel(IUnitOfWork unitOfWork)
     {
-        [ObservableProperty]
-        public ObservableCollection<Ticket> _Tickets;
+        UnitOfWork = unitOfWork;
 
-        [ObservableProperty]
-        public Ticket _SelectedTicket;
 
-        [ObservableProperty]
-        public Customer? _SelectedCustomer;
+        // Init Commands
+        UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
+        DeleteSelectedTicketCommand = new RelayCommand(DeleteSelectedTicket);
+        FilterTicketsCommand = new RelayCommand<string>(FilterTickets);
 
-        public string? _filterString = "All"; 
+        Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
+    }
 
-        #region Ticket Fields
-        [ObservableProperty]
-        public string _Title;
-
-        [ObservableProperty]
-        public string _Description;
-
-        [ObservableProperty]
-        public string _Status;
-
-        [ObservableProperty]
-        public string _AssignedTo;
-        #endregion
-
-        #region Combo Box Options
-        [ObservableProperty]
-        public List<string> _Groups = new List<string> { "","Tech Support", "Maintenance Team" };
-        [ObservableProperty]
-        public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
-        "Pending Customer", "On Hold", "Resolved", "Closed"};
-        [ObservableProperty]
-        public List<string> _Priorities = new List<string> { "", "High", "Standard" };
-        #endregion
-
-        IUnitOfWork UnitOfWork { get; set; }
-
-        public ICommand UpdateSelectedTicketCommand { get; }
-        public ICommand DeleteSelectedTicketCommand { get; }
-        public ICommand FilterTicketsCommand { get; }
-
-        public TicketControlViewModel(IUnitOfWork unitOfWork)
+    private void FilterTickets(string? value)
+    {
+        ClearTicketInformation();
+        SelectedTicket = null;
+        switch (value)
         {
-            UnitOfWork = unitOfWork;
-            
-
-            // Init Commands
-            UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
-            DeleteSelectedTicketCommand = new RelayCommand(DeleteSelectedTicket);
-            FilterTicketsCommand = new RelayCommand<string>(FilterTickets);
-
-            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
+            case "All":
+                Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
+                break;
+            case "Open":
+                Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetOpen());
+                break;
+            case "Assigned":
+                Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetAssigned("Maintenance Team")); // Todo(L) - change to current users team for argument
+                break;
         }
 
-        private void FilterTickets(string? value)
+        _filterString = value;
+    }
+
+    private void DeleteSelectedTicket()
+    {
+        if (MessageBox.Show("Are you sure you want to delete the selected ticket?", "Delete Ticket?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
         {
-            ClearTicketInformation();
-            SelectedTicket = null;
-            switch(value)
-            {
-                case "All":
-                    Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
-                    break;
-                case "Open":
-                    Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetOpen());
-                    break;
-                case "Assigned":
-                    Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetAssigned("Maintenance Team")); // Todo(L) - change to current users team for argument
-                    break;
-            }
-
-            _filterString = value;
-        }
-
-        private void DeleteSelectedTicket()
-        {
-            if(MessageBox.Show("Are you sure you want to delete the selected ticket?", "Delete Ticket?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
-            {
-                UnitOfWork.Tickets.Delete(SelectedTicket);
-                UnitOfWork.Commit();
-                FilterTickets(_filterString);
-            }
-        }
-
-        // Updates the ticket, adds to db and saves changes.
-        private void UpdateSelectedTicket()
-        {
-            // Apply changes on fields to ticket
-            SelectedTicket.Title = Title;
-            SelectedTicket.Description = Description;
-            SelectedTicket.Status = Status;
-            SelectedTicket.Assigned_To = AssignedTo;
-            SelectedTicket.Updated_Date = DateTime.Now;
-
-            // Update ticket and update tickets collection
-            UnitOfWork.Tickets.Update(SelectedTicket);
+            UnitOfWork.Tickets.Delete(SelectedTicket);
             UnitOfWork.Commit();
             FilterTickets(_filterString);
         }
+    }
 
-        // Updates customer depending on ticket selected
-        partial void OnSelectedTicketChanged(Ticket value)
+    // Updates the ticket, adds to db and saves changes.
+    private void UpdateSelectedTicket()
+    {
+        // Apply changes on fields to ticket
+        SelectedTicket.Title = Title;
+        SelectedTicket.Description = Description;
+        SelectedTicket.Status = Status;
+        SelectedTicket.Assigned_To = AssignedTo;
+        SelectedTicket.Updated_Date = DateTime.Now;
+
+        // Update ticket and update tickets collection
+        UnitOfWork.Tickets.Update(SelectedTicket);
+        UnitOfWork.Commit();
+        FilterTickets(_filterString);
+    }
+
+    // Updates customer depending on ticket selected
+    partial void OnSelectedTicketChanged(Ticket value)
+    {
+        if (value != null)
         {
-            if(value != null)
-            {
-                SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
+            SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
 
-                // Update Ticket Fields
-                Title = value.Title;
-                Description = value.Description;
-                Status = value.Status;
-                AssignedTo = value.Assigned_To;
-            }
-            else
-            {
-                SelectedCustomer = null;
-            }
+            // Update Ticket Fields
+            Title = value.Title;
+            Description = value.Description;
+            Status = value.Status;
+            AssignedTo = value.Assigned_To;
         }
-
-        private void ClearTicketInformation()
+        else
         {
-            Title = "";
-            Description = "";
-            Status = "";
-            AssignedTo = "";
+            SelectedCustomer = null;
         }
+    }
+
+    private void ClearTicketInformation()
+    {
+        Title = "";
+        Description = "";
+        Status = "";
+        AssignedTo = "";
     }
 }

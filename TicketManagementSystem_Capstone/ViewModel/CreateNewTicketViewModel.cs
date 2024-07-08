@@ -72,19 +72,19 @@ public partial class CreateNewTicketViewModel : BaseViewModel
 
     [ObservableProperty]
     [NotifyDataErrorInfo]
-    [Required(ErrorMessage ="Zip code is required.")]
+    [Required(ErrorMessage = "Zip code is required.")]
     [MinLength(5, ErrorMessage = "Zip code must be valid.")]
     [MaxLength(5, ErrorMessage = "Zip code must be valid.")]
     public string? _Zip;
 
     [ObservableProperty]
-    public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
-        "Pending Customer", "On Hold", "Resolved", "Closed"};
+    public List<string> _Statuses = ["", "Open", "Assigned", "In Progress",
+        "Pending Customer", "On Hold", "Resolved", "Closed"];
     [ObservableProperty]
-    public List<string> _Priorities = new List<string> {"", "High", "Standard"};
+    public List<string> _Priorities = ["", "High", "Standard"];
 
     [ObservableProperty]
-    public List<string> _Groups = new List<string> {"","Tech Support", "Maintenance Team"};
+    public List<string> _Groups = ["", "Tech Support", "Maintenance Team"];
 
     public ICommand ClearCommand { get; }
     public ICommand CreateTicketCommand { get; }
@@ -105,7 +105,7 @@ public partial class CreateNewTicketViewModel : BaseViewModel
     public void CreateTicket()
     {
         ValidateAllProperties();
-        if(HasErrors)
+        if (HasErrors)
         {
             return;
         }

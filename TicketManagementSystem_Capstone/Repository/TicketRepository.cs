@@ -11,7 +11,7 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
     {
         this.dbContext = dbContext;
     }
-    
+
     // Gets all tickets 
     public List<Ticket> GetAll()
     {

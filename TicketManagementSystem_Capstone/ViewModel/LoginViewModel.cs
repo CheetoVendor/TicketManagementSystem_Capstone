@@ -5,6 +5,7 @@ using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
 namespace TicketManagementSystem_Capstone.ViewModel;
+
 // https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observablerecipient
 // Use to handle login ^
 public partial class LoginViewModel : BaseViewModel
@@ -19,13 +20,15 @@ public partial class LoginViewModel : BaseViewModel
     public string? _errorMessage;
 
     public ICommand LoginCommand { get; }
+
     private readonly IUnitOfWork _unitOfWork;
 
     public LoginViewModel(IUnitOfWork unitOfWork)
     {
-
-        this._unitOfWork = unitOfWork as UnitOfWork;
+        _unitOfWork = unitOfWork;
         LoginCommand = new RelayCommand(Login);
+
+        // Detect Culture info
     }
 
     private void Login()

@@ -34,7 +34,7 @@ public partial class MainViewModel : BaseViewModel
     private void ChangeView(string? tab)
     {
         // Used so it doesnt refresh the tab if you click on the same one.
-        if(CurrentTab.TabName == tab)
+        if (CurrentTab.TabName == tab)
         {
             return;
         }
