@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
+using TicketManagementSystem_Capstone.ViewModel.Administration;
 
 namespace TicketManagementSystem_Capstone.Services
 {
@@ -127,6 +128,26 @@ namespace TicketManagementSystem_Capstone.Services
         public IBaseTabViewModel GetAdministrationTabControlViewModel()
         {
             return GetService<AdministrationTabControlViewModel>();
+        }
+
+        public IBaseTabViewModel GetEmployeeViewModel()
+        {
+            return GetService<EmployeeViewModel>();
+        }
+
+        public EmployeeView GetEmployeeView()
+        {
+            return GetService<EmployeeView>();
+        }
+
+        public IBaseTabViewModel GetCreateEmployeeViewModel()
+        {
+            return GetService<CreateEmployeeViewModel>();
+        }
+
+        public CreateEmployeeView GetCreateNewEmployeeView()
+        {
+            return GetService<CreateEmployeeView>();
         }
     }
 }

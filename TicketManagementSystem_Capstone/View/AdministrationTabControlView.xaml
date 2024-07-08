@@ -9,6 +9,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <TabControl SelectedIndex="{Binding TabIndex}">
+            <TabItem Header="Employees" IsSelected="True">
+                <ContentControl Content="{Binding CurrentTabView}"/>
+            </TabItem>
+            <TabItem Header="Add Employee">
+                <ContentControl Content="{Binding CurrentTabView}"/>
+            </TabItem>
             
+        </TabControl>
     </Grid>
 </UserControl>

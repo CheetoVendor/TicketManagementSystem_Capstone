@@ -50,7 +50,6 @@ public partial class CustomerViewModel : BaseViewModel
 
         UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
         DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
-        
     }
 
     private void DeleteCustomer()

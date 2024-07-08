@@ -13,5 +13,9 @@ namespace TicketManagementSystem_Capstone.Repository.Interfaces
         public bool IsLoginCorrect(string email, string password);
 
         public bool IsEmailUnique(string email);
+
+        public IEnumerable<User> GetTechnicalSupportUsers();
+
+        public IEnumerable<User> GetMaintenanceUsers();
     }
 }

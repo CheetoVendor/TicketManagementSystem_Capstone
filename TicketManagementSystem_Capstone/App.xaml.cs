@@ -9,6 +9,7 @@ using TicketManagementSystem_Capstone.Repository.Interfaces;
 using TicketManagementSystem_Capstone.Services;
 using TicketManagementSystem_Capstone.View;
 using TicketManagementSystem_Capstone.ViewModel;
+using TicketManagementSystem_Capstone.ViewModel.Administration;
 
 namespace TicketManagementSystem_Capstone
 {
@@ -64,6 +65,10 @@ namespace TicketManagementSystem_Capstone
                     services.AddTransient<ReportsTabControlViewModel>();
                     services.AddTransient<AdministrationTabControlView>();
                     services.AddTransient<AdministrationTabControlViewModel>();
+                    services.AddTransient<EmployeeView>();
+                    services.AddTransient<EmployeeViewModel>();
+                    services.AddTransient<CreateEmployeeView>();
+                    services.AddTransient<CreateEmployeeViewModel>();
                     services.AddSingleton<VVMService>();
                     services.AddDbContext<DuraTechDbContext>(options =>
                     {

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
@@ -12,30 +13,68 @@ public partial class CreateNewTicketViewModel : BaseViewModel
 
     // Ticket info
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Title is required.")]
     public string? _Title;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Description is required.")]
     public string? _Description;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Status is required.")]
     public string? _Status;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Priority is required.")]
     public string? _Priority;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Assigned team is required.")]
     public string? _AssignedTo;
 
     // Customer info
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Customer name is required.")]
     public string? _CustomerName;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Phone number is required.")]
+    [RegularExpression(@"^\(\d{3}\)-\d{3}-\d{4}$", ErrorMessage = "Phone number must be in the format (###)-###-####.")]
     public string? _Phone;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Email is required.")]
+    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be in a correct format.")]
     public string? _Email;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Address is required.")]
     public string? _Address;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "City is required.")]
     public string? _City;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "State is required.")]
     public string? _State;
+
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage ="Zip code is required.")]
+    [MinLength(5, ErrorMessage = "Zip code must be valid.")]
+    [MaxLength(5, ErrorMessage = "Zip code must be valid.")]
     public string? _Zip;
 
     [ObservableProperty]
@@ -65,7 +104,11 @@ public partial class CreateNewTicketViewModel : BaseViewModel
 
     public void CreateTicket()
     {
-        // Todo - Add check for nulls and white spaces. 
+        ValidateAllProperties();
+        if(HasErrors)
+        {
+            return;
+        }
 
         // Create Customer
         int id = UnitOfWork.Customers.AddCustomer(new Customer

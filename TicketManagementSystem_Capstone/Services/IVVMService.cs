@@ -38,5 +38,13 @@ namespace TicketManagementSystem_Capstone.Services
         AdministrationTabControlView GetAdministrationTabControlView();
 
         IBaseTabViewModel GetAdministrationTabControlViewModel();
+
+        IBaseTabViewModel GetEmployeeViewModel();
+
+        EmployeeView GetEmployeeView();
+
+        IBaseTabViewModel GetCreateEmployeeViewModel();
+
+        CreateEmployeeView GetCreateNewEmployeeView();
     }
 }
