@@ -11,10 +11,10 @@ namespace TicketManagementSystem_Capstone.ViewModel;
 public partial class TicketControlViewModel : BaseViewModel
 {
     [ObservableProperty]
-    public ObservableCollection<Ticket> _Tickets;
+    public ObservableCollection<Ticket>? _Tickets;
 
     [ObservableProperty]
-    public Ticket _SelectedTicket;
+    public Ticket? _SelectedTicket;
 
     [ObservableProperty]
     public Customer? _SelectedCustomer;
@@ -23,29 +23,29 @@ public partial class TicketControlViewModel : BaseViewModel
 
     #region Ticket Fields
     [ObservableProperty]
-    public string _Title;
+    public string? _Title;
 
     [ObservableProperty]
-    public string _Description;
+    public string? _Description;
 
     [ObservableProperty]
-    public string _Status;
+    public string? _Status;
 
     [ObservableProperty]
-    public string _AssignedTo;
+    public string? _AssignedTo;
     #endregion
 
     #region Combo Box Options
     [ObservableProperty]
-    public List<string> _Groups = new List<string> { "", "Tech Support", "Maintenance Team" };
+    public List<string>? _Groups = new List<string> { "", "Tech Support", "Maintenance Team" };
     [ObservableProperty]
-    public List<string> _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
+    public List<string>? _Statuses = new List<string> {"", "Open", "Assigned", "In Progress",
     "Pending Customer", "On Hold", "Resolved", "Closed"};
     [ObservableProperty]
-    public List<string> _Priorities = new List<string> { "", "High", "Standard" };
+    public List<string>? _Priorities = new List<string> { "", "High", "Standard" };
     #endregion
 
-    IUnitOfWork UnitOfWork { get; set; }
+    private IUnitOfWork UnitOfWork { get; set; }
 
     public ICommand UpdateSelectedTicketCommand { get; }
     public ICommand DeleteSelectedTicketCommand { get; }
@@ -54,7 +54,6 @@ public partial class TicketControlViewModel : BaseViewModel
     public TicketControlViewModel(IUnitOfWork unitOfWork)
     {
         UnitOfWork = unitOfWork;
-
 
         // Init Commands
         UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
@@ -84,6 +83,7 @@ public partial class TicketControlViewModel : BaseViewModel
         _filterString = value;
     }
 
+    // Asks user if they want to delete the ticket. 
     private void DeleteSelectedTicket()
     {
         if (MessageBox.Show("Are you sure you want to delete the selected ticket?", "Delete Ticket?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
@@ -110,7 +110,7 @@ public partial class TicketControlViewModel : BaseViewModel
         FilterTickets(_filterString);
     }
 
-    // Updates customer depending on ticket selected
+    // Updates customer and ticket info depending on ticket selected
     partial void OnSelectedTicketChanged(Ticket value)
     {
         if (value != null)

@@ -131,7 +131,7 @@ public partial class CreateNewTicketViewModel : BaseViewModel
             Title = Title,
             Description = Description,
             Status = Status,
-            Created_Date = DateTime.Now, // Todo - Change later to get user time zone
+            Created_Date = DateTime.Now,
             Updated_Date = DateTime.Now,
             Assigned_To = AssignedTo
         });
@@ -141,6 +141,7 @@ public partial class CreateNewTicketViewModel : BaseViewModel
 
     public void Clear()
     {
+        ClearErrors();
         Title = "";
         Description = "";
         Status = "";

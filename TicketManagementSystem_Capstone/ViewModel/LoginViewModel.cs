@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Input;
-using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
 namespace TicketManagementSystem_Capstone.ViewModel;
@@ -29,36 +30,21 @@ public partial class LoginViewModel : BaseViewModel
         LoginCommand = new RelayCommand(Login);
 
         // Detect Culture info
+        CultureInfo info = CultureInfo.CurrentCulture;
+        MessageBox.Show("asd");
     }
 
     private void Login()
     {
 
-        // get user id by email.
-        /*
-        if ()
+        if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
         {
-            if ()
-            {
-                // Todo(M) - do the navigation differently 
-                var view1 = App._host.Services.GetRequiredService<LoginView>();
-                view1.Visibility = Visibility.Hidden;
-                
-                var view2 = App._host.Services.GetService<MainView>();
-                view2.Show();
-            }
+
         }
         else
         {
-            
+            ErrorMessage = "Email address or password is incorrect.";
         }
-        */
-        // verify email and password match 
-        // TODO - Need to crypt/hash/salt passwords
-
-        // if so LOG IN AND MOVE TO MainWindow
-
-        // else print error
 
     }
 }

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="DuraTech TMS" Height="800" Width="900"
         Background="Transparent" WindowStyle="None" AllowsTransparency="True">
-    <Border BorderBrush="#090909" BorderThickness="1" Background="#090909" >
+    <Border BorderBrush="#090909" BorderThickness="1" Background="#090909">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>

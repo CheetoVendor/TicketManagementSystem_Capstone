@@ -17,13 +17,11 @@ public partial class TicketTabControlViewModel : BaseViewModel, IBaseTabViewMode
     [ObservableProperty]
     public int _TabIndex;
 
-    IUnitOfWork _UnitOfWork { get; set; }
-    IVVMS _ViewViewModelService { get; set; }
+    private IVVMS _ViewViewModelService { get; set; }
 
 
-    public TicketTabControlViewModel(IUnitOfWork unitOfWork, VVMService viewViewmodelService)
+    public TicketTabControlViewModel(VVMService viewViewmodelService)
     {
-        _UnitOfWork = unitOfWork;
         _ViewViewModelService = viewViewmodelService;
 
         SelectedTab = _ViewViewModelService.GetTicketControlViewModel();

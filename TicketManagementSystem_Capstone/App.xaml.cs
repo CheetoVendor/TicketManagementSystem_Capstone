@@ -31,10 +31,11 @@ public partial class App : Application
         App app = new();
         app.InitializeComponent();
 
-
+        
         app.MainWindow = _host.Services.GetRequiredService<MainView>();
         app.MainWindow.Visibility = Visibility.Visible;
         app.Run();
+        
     }
 
     // Creates host builder and adds services via DI
