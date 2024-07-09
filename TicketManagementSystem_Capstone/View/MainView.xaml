@@ -11,38 +11,43 @@
         Background="Transparent" WindowStyle="None" AllowsTransparency="True">
     <Border BorderBrush="#090909" BorderThickness="1" Background="#090909">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="99*"/>
-                <ColumnDefinition Width="99*"/>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="19*"/>
-                <ColumnDefinition Width="99*"/>
-                <ColumnDefinition Width="5"/>
-            </Grid.ColumnDefinitions>
-            <DockPanel Grid.Row="0" Grid.ColumnSpan="7" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
-                <TextBlock Text="DuraTech Ticket Management System" Foreground="White" VerticalAlignment="Center"/>
-            </DockPanel> <!--TODO : ADD LOGO AND ADD BUTTONS-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="99*"/>
+                    <ColumnDefinition Width="99*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="99*"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Row="0" Grid.ColumnSpan="7" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
+                    <TextBlock Text="DuraTech Ticket Management System" Foreground="White" VerticalAlignment="Center"
+                               Margin="5,0"/>
+                </DockPanel>
+                <!--TODO : ADD LOGO AND ADD BUTTONS-->
 
 
-            <Menu Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="7" Background="#080808" Foreground="White">
-                <MenuItem Header="Tickets" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Tickets"/>
-                <MenuItem Header="Customers" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Customers"/>
-                <MenuItem Header="Reports" Command="{Binding ChangeViewCommand}" CommandParameter="Reports"/>
-                <MenuItem Header="Administration" Command="{Binding ChangeViewCommand}" CommandParameter="Administration"/>
-            </Menu>
+                <Menu Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="7" Background="#080808" Foreground="White">
+                    <MenuItem Header="Tickets" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Tickets"/>
+                    <MenuItem Header="Customers" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Customers"/>
+                    <MenuItem Header="Reports" Command="{Binding ChangeViewCommand}" CommandParameter="Reports"/>
+                    <MenuItem Header="Administration" Command="{Binding ChangeViewCommand}" CommandParameter="Administration"/>
+                </Menu>
 
-            <ContentControl Content="{Binding CurrentTabView}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
+                <ContentControl Content="{Binding CurrentTabView}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
+            </Grid>
         </Grid>
     </Border>
+    
 </Window>

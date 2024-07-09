@@ -1,4 +1,5 @@
-﻿using TicketManagementSystem_Capstone.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using TicketManagementSystem_Capstone.Data;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
@@ -35,23 +36,18 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
         return dbContext.Ticket.Where(ticket => ticket.Status == "In Progress").ToList();
     }
 
-    public List<Ticket> GetPendingCustomer()
-    {
-        return dbContext.Ticket.Where(ticket => ticket.Status == "Pending Customer").ToList();
-    }
-
-    public List<Ticket> GetOnHold()
-    {
-        return dbContext.Ticket.Where(ticket => ticket.Status == "On Hold").ToList();
-    }
-
-    public List<Ticket> GetResolved()
-    {
-        return dbContext.Ticket.Where(ticket => ticket.Status == "Resolved").ToList();
-    }
-
     public List<Ticket> GetClosed()
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "Closed").ToList();
+    }
+
+    public List<TicketCompletion> GetTicketCompletionTimes()
+    {
+        return dbContext.Ticket.Where(ticket => ticket.Status == "Closed")
+            .Select(ticket => new TicketCompletion
+            {
+                TicketId = ticket.Id,
+                DaysToComplete = (int)(ticket.Updated_Date - ticket.Created_Date).TotalDays,
+            }).ToList();
     }
 }

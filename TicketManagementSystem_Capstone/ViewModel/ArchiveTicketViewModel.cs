@@ -10,13 +10,13 @@ namespace TicketManagementSystem_Capstone.ViewModel;
 public partial class ArchiveTicketViewModel : BaseViewModel
 {
     [ObservableProperty]
-    public ObservableCollection<Ticket> _Tickets;
+    public ObservableCollection<Ticket>? _Tickets;
 
     [ObservableProperty]
-    public Ticket _SelectedTicket;
+    public Ticket? _SelectedTicket;
 
     [ObservableProperty]
-    public Customer _SelectedCustomer;
+    public Customer? _SelectedCustomer;
 
     IUnitOfWork UnitOfWork { get; set; }
 
@@ -26,14 +26,31 @@ public partial class ArchiveTicketViewModel : BaseViewModel
     {
         UnitOfWork = unitOfWork;
         Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetClosed());
-        //SelectedTicket = Tickets[0];
-
 
         ReopenSelectedTicketCommand = new RelayCommand(ReopenSelectedTicket);
     }
 
     private void ReopenSelectedTicket()
-    { // todo - 
-        throw new NotImplementedException();
+    {
+        if(SelectedTicket != null)
+        {
+            SelectedTicket.Status = "Open";
+            UnitOfWork.Tickets.Update(SelectedTicket);
+            UnitOfWork.Commit();
+        }
+
+        SelectedTicket = null;
+        SelectedCustomer = null;
+
+        Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetClosed());
+    }
+
+    partial void OnSelectedTicketChanged(Ticket value)
+    {
+        if(value != null)
+        {
+            SelectedCustomer = UnitOfWork.Customers.GetCustomerById(value.Customer_Id);
+        }
+        
     }
 }

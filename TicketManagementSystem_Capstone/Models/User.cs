@@ -8,4 +8,6 @@ public class User
     public string First_Name { get; set; }
     public string Last_Name { get; set; }
     public string Team { get; set; }
+
+    public int Admin { get; set; }
 }

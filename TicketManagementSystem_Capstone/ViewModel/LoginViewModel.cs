@@ -4,11 +4,10 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
+using TicketManagementSystem_Capstone.Services;
 
 namespace TicketManagementSystem_Capstone.ViewModel;
 
-// https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observablerecipient
-// Use to handle login ^
 public partial class LoginViewModel : BaseViewModel
 {
     [ObservableProperty]
@@ -21,17 +20,29 @@ public partial class LoginViewModel : BaseViewModel
     public string? _errorMessage;
 
     public ICommand LoginCommand { get; }
-
+    public ICommand ExitCommand { get; }
     private readonly IUnitOfWork _unitOfWork;
+    private readonly UserService _userService;
 
-    public LoginViewModel(IUnitOfWork unitOfWork)
+    public IVVMS _viewViewModelService;
+
+    public LoginViewModel(VVMService viewViewModelService, IUnitOfWork unitOfWork, UserService userService)
     {
         _unitOfWork = unitOfWork;
-        LoginCommand = new RelayCommand(Login);
+        _viewViewModelService = viewViewModelService;
+        _userService = userService;
 
-        // Detect Culture info
+        LoginCommand = new RelayCommand(Login);
+        ExitCommand = new RelayCommand(Exit);
+
+        // Culture info
         CultureInfo info = CultureInfo.CurrentCulture;
-        MessageBox.Show("asd");
+        _userService.CultureInfo = info;
+    }
+
+    private void Exit()
+    {
+        Application.Current.Shutdown();
     }
 
     private void Login()
@@ -39,7 +50,13 @@ public partial class LoginViewModel : BaseViewModel
 
         if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
         {
+            _userService.User = _unitOfWork.Users.LoginUser(Email, Password);
 
+
+            Application.Current.MainWindow.Hide();
+
+            Application.Current.MainWindow = _viewViewModelService.GetMainView();
+            Application.Current.MainWindow.Show();
         }
         else
         {

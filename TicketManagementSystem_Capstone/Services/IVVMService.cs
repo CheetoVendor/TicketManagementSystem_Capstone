@@ -1,5 +1,7 @@
 ﻿using TicketManagementSystem_Capstone.View;
+using TicketManagementSystem_Capstone.View.Reports;
 using TicketManagementSystem_Capstone.ViewModel;
+using TicketManagementSystem_Capstone.ViewModel.Reports;
 
 namespace TicketManagementSystem_Capstone.Services;
 
@@ -46,4 +48,8 @@ public interface IVVMS
     IBaseTabViewModel GetCreateEmployeeViewModel();
 
     CreateEmployeeView GetCreateNewEmployeeView();
+
+    TicketCompletionTimeView GetTicketCompletionTimeView();
+
+    TicketCompletionTimeViewModel GetTicketCompletionTimeViewModel();
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicketManagementSystem_Capstone.View;
+using TicketManagementSystem_Capstone.View.Reports;
 using TicketManagementSystem_Capstone.ViewModel;
 using TicketManagementSystem_Capstone.ViewModel.Administration;
+using TicketManagementSystem_Capstone.ViewModel.Reports;
 
 namespace TicketManagementSystem_Capstone.Services;
 
@@ -148,5 +150,15 @@ public class VVMService : IVVMS
     public CreateEmployeeView GetCreateNewEmployeeView()
     {
         return GetService<CreateEmployeeView>();
+    }
+
+    public TicketCompletionTimeView GetTicketCompletionTimeView()
+    {
+        return GetService<TicketCompletionTimeView>();
+    }
+
+    public TicketCompletionTimeViewModel GetTicketCompletionTimeViewModel()
+    {
+        return GetService<TicketCompletionTimeViewModel>();
     }
 }

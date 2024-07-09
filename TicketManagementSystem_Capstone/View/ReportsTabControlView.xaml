@@ -10,7 +10,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TabControl>
-            <TabItem Header="Report" IsSelected="True" />
+            <TabItem Header="Report" IsSelected="True">
+                <ContentControl Content="{Binding CurrentTabView}"/>
+            </TabItem>
         </TabControl>
         
     </Grid>

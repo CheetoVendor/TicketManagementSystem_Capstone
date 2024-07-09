@@ -12,7 +12,7 @@ using TicketManagementSystem_Capstone.Data;
 namespace TicketManagementSystem_Capstone.Migrations
 {
     [DbContext(typeof(DuraTechDbContext))]
-    [Migration("20240702150159_InitialMigration")]
+    [Migration("20240709210914_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

@@ -12,9 +12,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -26,56 +26,69 @@
         
         <!--Header-->
         <Label Content="Create User Account" 
-               FontSize="20" Grid.ColumnSpan="2"/>
+               FontSize="20" Grid.ColumnSpan="3"/>
         
         <!--First Name -->
         <Label Content="First Name:"
                Grid.Row="1"/>
-        <TextBox Text="{Binding FirstName}"
+        <TextBox x:Name="FirstNameTextBox"
+                 Text="{Binding FirstName, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
                  Grid.Row="1"
-                 Grid.Column="1"/>
-        
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=FirstNameTextBox}"
+                   Grid.Row="1" Grid.Column="2"/>
+
         <!--Last Name-->
         <Label Content="Last Name:"
                Grid.Row="2"/>
-        <TextBox Text="{Binding LastName}"
+        <TextBox x:Name="LastNameTextBox"
+                 Text="{Binding LastName , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
                  Grid.Row="2"
-                 Grid.Column="1"/>
-        
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=LastNameTextBox}"
+           Grid.Row="2" Grid.Column="2"/>
+            
         <!-- Email -->
         <Label Content="Email:"
                Grid.Row="3"/>
-        <TextBox Text="{Binding Email}"
+        <TextBox x:Name="EmailTextBox"
+                 Text="{Binding Email , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
                  Grid.Row="3"
-                 Grid.Column="1"/>
-        
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EmailTextBox}"
+           Grid.Row="3" Grid.Column="2"/>
+            
         <!-- Team -->
         <Label Content="Team:"
                Grid.Row="4"/>
-        <ComboBox ItemsSource="{Binding Teams}"
-                  SelectedItem="{Binding Team}"
+        <ComboBox x:Name="TeamComboBox"
+                  ItemsSource="{Binding Teams}"
+                  SelectedItem="{Binding Team, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
                   Grid.Row="4"
-                  Grid.Column="1"/>
-        <!-- Password -->
-        <Label Content="Password Options:"
-               Grid.Row="5"/>
-        <ComboBox ItemsSource="{Binding PasswordOptions}"
-                  SelectedItem="{Binding PasswordOptionSelection}"
-                  Grid.Row="5"
-                  Grid.Column="1"/>
-
+                  Grid.Column="1"
+                  HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=TeamComboBox}"
+           Grid.Row="4" Grid.Column="2"/>
+            <!-- Password -->
         <Label Content="Password:"
-               Grid.Row="6"/>
-        <TextBox Text="{Binding Password}"
-                 Grid.Row="6"
-                 Grid.Column="1"/>
+               Grid.Row="5"/>
+        <TextBox x:Name="PasswordTextBox"
+                 Text="{Binding Password , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PasswordTextBox}"
+           Grid.Row="5" Grid.Column="2"/>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2">
+            <Button Content="Create User"
+        Command="{Binding CreateUserCommand}"/>
+            <Button Content="Clear"
+        Command="{Binding ClearCommand}"/>
+        </StackPanel>
         
-        <Button Content="Create User"
-                Command="{Binding CreateUserCommand}"
-                Grid.Row="7"/>
-        <Button Content="Clear"
-                Command="{Binding ClearCommand}"
-                Grid.Row="7"
-                Grid.Column="1"/>
     </Grid>
 </UserControl>

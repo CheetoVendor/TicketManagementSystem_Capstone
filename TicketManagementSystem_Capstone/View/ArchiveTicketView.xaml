@@ -23,15 +23,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="Archived Tickets" FontSize="16" VerticalAlignment="Bottom"/>
-        <!--Data Grid-->
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" 
-          ItemsSource="{Binding Tickets}"
-          SelectionMode="Single"
-          SelectedItem="{Binding SelectedTicket}"
-          IsReadOnly="True"
-          >
-        </DataGrid>
+        
+        <StackPanel Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <Label Content="Archived Tickets" FontSize="20" VerticalAlignment="Bottom"/>
+            <!--Data Grid-->
+            <DataGrid ItemsSource="{Binding Tickets}"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedTicket}"
+                      IsReadOnly="True"
+                      MinHeight="300"/>
+
+        </StackPanel>
+        
 
         <!--Ticket View on Right Side-->
         <Border Grid.Column="3" Grid.ColumnSpan="4"
@@ -73,25 +76,25 @@
                 <!--Assignee-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Assigned To:"/>
-                    <Label Content="{Binding SelectedTicket}"/> <!-- Add Assigned to group -->
+                    <Label Content="{Binding SelectedTicket.Assigned_To}"/> <!-- Add Assigned to group -->
                 </StackPanel>
 
                 <!--Customer Information-->
                 <Label Content="Customer Information" FontSize="16"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Name:"/>
-                    <TextBox Text="{Binding SelectedCustomer.Name}"
-                             IsReadOnly="True"/>
+                    <Label Content="{Binding SelectedCustomer.Name}"
+                             />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Phone:"/>
-                    <TextBox Text="{Binding SelectedCustomer.Phone}"
-                             IsReadOnly="True"/>
+                    <Label Content="{Binding SelectedCustomer.Phone}"
+                             />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Email: "/>
-                    <TextBox Text="{Binding SelectedCustomer.Email}"
-                             IsReadOnly="True"/>
+                    <Label Content="{Binding SelectedCustomer.Email}"
+                             />
                 </StackPanel>
             </StackPanel>
         </Border>

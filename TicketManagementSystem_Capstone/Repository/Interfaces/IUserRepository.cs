@@ -12,4 +12,5 @@ public interface IUserRepository : IRepository<User>
     public IEnumerable<User> GetTechnicalSupportUsers();
 
     public IEnumerable<User> GetMaintenanceUsers();
+    public User LoginUser(string email, string password);
 }

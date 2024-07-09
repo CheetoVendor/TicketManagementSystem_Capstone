@@ -105,13 +105,9 @@
             <!--User Password-->
             <Label Content="Password:"
                    Grid.Row="6"/>
-            <Label Content="Unavailable"
+            <TextBox Text="{Binding Password}"
                    Grid.Row="6"
                    Grid.Column="1"/>
-            <!--Buttons-->
-            <Button Content="Reset Password"
-                    Command="{Binding ResetUserPasswordCommand}"
-                    Grid.Row="7"/>
         </Grid>
         
         <!-- Buttons -->

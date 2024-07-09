@@ -8,8 +8,10 @@ using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 using TicketManagementSystem_Capstone.Services;
 using TicketManagementSystem_Capstone.View;
+using TicketManagementSystem_Capstone.View.Reports;
 using TicketManagementSystem_Capstone.ViewModel;
 using TicketManagementSystem_Capstone.ViewModel.Administration;
+using TicketManagementSystem_Capstone.ViewModel.Reports;
 
 namespace TicketManagementSystem_Capstone;
 
@@ -31,11 +33,9 @@ public partial class App : Application
         App app = new();
         app.InitializeComponent();
 
-        
-        app.MainWindow = _host.Services.GetRequiredService<MainView>();
+        app.MainWindow = _host.Services.GetRequiredService<LoginView>();
         app.MainWindow.Visibility = Visibility.Visible;
         app.Run();
-        
     }
 
     // Creates host builder and adds services via DI
@@ -70,6 +70,8 @@ public partial class App : Application
                 services.AddTransient<EmployeeViewModel>();
                 services.AddTransient<CreateEmployeeView>();
                 services.AddTransient<CreateEmployeeViewModel>();
+                services.AddTransient<TicketCompletionTimeView>();
+                services.AddTransient<TicketCompletionTimeViewModel>();
                 services.AddSingleton<VVMService>();
                 services.AddDbContext<DuraTechDbContext>(options =>
                 {
@@ -83,6 +85,8 @@ public partial class App : Application
                 services.AddScoped<ITicketRepository, TicketRepository>();
                 services.AddScoped<ICustomerRepository, CustomerRepository>();
                 services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+                services.AddSingleton<UserService>();
             });
     }
 

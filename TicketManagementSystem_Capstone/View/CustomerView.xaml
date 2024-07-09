@@ -23,14 +23,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3">
             <Label Content="Customers" FontSize="20"/>
             <!-- Customer Data grid -->
             <DataGrid ItemsSource="{Binding Customers}" 
                       SelectedItem="{Binding SelectedCustomer}"
                       IsReadOnly="True" CanUserSortColumns="True"
                       CanUserReorderColumns="False"
-                      MinHeight="300"/>
+                      MinHeight="300"
+                      MaxHeight="400"/>
         </StackPanel>
             
 

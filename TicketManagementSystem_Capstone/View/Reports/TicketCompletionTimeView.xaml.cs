@@ -5,34 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TicketManagementSystem_Capstone.ViewModel;
+using TicketManagementSystem_Capstone.ViewModel.Reports;
 
-namespace TicketManagementSystem_Capstone.View
+namespace TicketManagementSystem_Capstone.View.Reports
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for TicketCompletionTimeView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class TicketCompletionTimeView : UserControl
     {
-        public LoginView(LoginViewModel vm)
+        public TicketCompletionTimeView(TicketCompletionTimeViewModel vm)
         {
             DataContext = vm;
             InitializeComponent();
-        }
-
-        private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ButtonState == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
         }
     }
 }

@@ -39,6 +39,11 @@ public class UserRepository : Repository<User>, IUserRepository
 
     public IEnumerable<User> GetMaintenanceUsers()
     {
-        return _dbContext.Set<User>().Where(user => user.Team == "Maintenance");
+        return _dbContext.Set<User>().Where(user => user.Team == "Maintenance Team");
+    }
+
+    public User LoginUser(string email, string password)
+    {
+        return _dbContext.Set<User>().SingleOrDefault(user => user.Email.ToLower() == email.ToLower() && user.Password == password);
     }
 }

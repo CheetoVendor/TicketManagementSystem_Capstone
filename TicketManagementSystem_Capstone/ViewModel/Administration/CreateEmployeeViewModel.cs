@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
@@ -11,28 +12,33 @@ public partial class CreateEmployeeViewModel : BaseViewModel, IBaseTabViewModel
     public string TabName { get; set; } = "Add Employee";
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Email is required.")]
+    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be valid.")]
     public string? _Email;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "First name is required.")]
     public string? _FirstName;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Last name is required.")]
     public string? _LastName;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "Team assignment is required.")]
     public string? _Team;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "User password is required.")]
     public string? _Password;
 
     [ObservableProperty]
     public List<string> _Teams = new List<string> { "", "Tech Support", "Maintenance" };
-
-    [ObservableProperty]
-    public List<string> _PasswordOptions = new List<string> { "", "Temporary Password", "Set Password" };
-
-    [ObservableProperty]
-    public string? _PasswordOptionSelection;
 
     private IUnitOfWork _unitOfWork;
 
@@ -58,22 +64,26 @@ public partial class CreateEmployeeViewModel : BaseViewModel, IBaseTabViewModel
         LastName = "";
         Team = "";
         Password = "";
-        PasswordOptionSelection = "";
+        ClearErrors();
     }
 
     private void CreateUser()
     {
-        _unitOfWork.Users.Add(new User
+        ValidateAllProperties();
+        if (!HasErrors)
         {
-            First_Name = FirstName,
-            Last_Name = LastName,
-            Email = Email,
-            Team = Team,
-            Password = Password,
-        });
+            _unitOfWork.Users.Add(new User
+            {
+                First_Name = FirstName,
+                Last_Name = LastName,
+                Email = Email,
+                Team = Team,
+                Password = Password,
+            });
 
-        _unitOfWork.Commit();
+            _unitOfWork.Commit();
 
-        Clear();
+            Clear();
+        }
     }
 }

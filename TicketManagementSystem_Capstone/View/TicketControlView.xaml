@@ -24,29 +24,29 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.ColumnSpan="3" Grid.RowSpan="3" Orientation="Vertical">
+        <StackPanel Grid.ColumnSpan="3" Grid.RowSpan="4" Orientation="Vertical">
         <!--Ticket List-->
-        <Label Content="Tickets" FontSize="28" VerticalAlignment="Bottom"/>
+        <Label Content="Tickets" FontSize="20" VerticalAlignment="Bottom"/>
             
         <!--Radio Buttons-->
         <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                 <RadioButton Content="All"
-                             Margin="5,5"
+                             Margin="5,0"
                              IsChecked="True"
                              Command="{Binding FilterTicketsCommand}"
                              CommandParameter="All"/>
                 <RadioButton Content="Open"
-                         Margin="5,5"
-                         Command="{Binding FilterTicketsCommand}"
+                             Margin="5,0"
+                             Command="{Binding FilterTicketsCommand}"
                              CommandParameter="Open"/>
-            <RadioButton Content="Assigned"
-                         Margin="5,5"
-                         Command="{Binding FilterTicketsCommand}"
-                         CommandParameter="Assigned"/>
+                <RadioButton Content="Assigned"
+                             Margin="5,0"
+                             Command="{Binding FilterTicketsCommand}"
+                             CommandParameter="Assigned"/>
         </StackPanel>
         
         <!--Data Grid-->
-        <DataGrid   
+            <DataGrid   
                   ItemsSource="{Binding Tickets}"
                   SelectionMode="Single"
                   SelectedItem="{Binding SelectedTicket}"
@@ -54,8 +54,9 @@
                   CanUserSortColumns="True"
                   CanUserReorderColumns="False"
                   MinHeight="300"
-                  >
-        </DataGrid>
+                  MaxHeight="400"
+                  />
+
         </StackPanel>
         <!--Ticket View on Right Side-->
         <Border Grid.Column="3" Grid.ColumnSpan="4"

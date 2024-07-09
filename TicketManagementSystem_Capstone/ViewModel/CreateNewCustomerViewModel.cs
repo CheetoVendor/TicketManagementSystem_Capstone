@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel.DataAnnotations;
+using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
@@ -12,7 +13,7 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
     public string TabName { get; set; } = "Add Customer";
 
     [ObservableProperty]
-    public List<string> _Priorities = new List<string> { "", "High", "Standard" };
+    public List<string> _Priorities = ["", "High", "Standard"];
 
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -24,7 +25,7 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "Phone number is required.")]
-    [RegularExpression(@"^\(\d{3}\)-\d{3}-\d{4}$", ErrorMessage = "Phone number must be in the format (###)-###-####.")]
+    [RegularExpression(@"^\d{3}-\d{3}-\d{4}$", ErrorMessage = "Phone number must be in the format ###-###-####.")]
     [NotifyPropertyChangedFor(nameof(HasErrors))]
     public string? _Phone;
 
@@ -112,6 +113,10 @@ public partial class CreateNewCustomerViewModel : BaseViewModel, IBaseTabViewMod
         });
 
         UnitOfWork.Commit();
+
+        // Todo - need to add a clear and message showing that the entity was created
+        Clear();
+        MessageBox.Show("Customer created!");
     }
 
     private bool CanAddCustomer() => !HasErrors;

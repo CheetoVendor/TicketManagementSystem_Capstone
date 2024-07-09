@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
@@ -10,7 +12,6 @@ namespace TicketManagementSystem_Capstone.ViewModel;
 public partial class CreateNewTicketViewModel : BaseViewModel
 {
     #region Props
-
     // Ticket info
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -46,7 +47,7 @@ public partial class CreateNewTicketViewModel : BaseViewModel
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "Phone number is required.")]
-    [RegularExpression(@"^\(\d{3}\)-\d{3}-\d{4}$", ErrorMessage = "Phone number must be in the format (###)-###-####.")]
+    [RegularExpression(@"^\d{3}-\d{3}-\d{4}$", ErrorMessage = "Phone number must be in the format ###-###-####.")]
     public string? _Phone;
 
     [ObservableProperty]
@@ -78,13 +79,17 @@ public partial class CreateNewTicketViewModel : BaseViewModel
     public string? _Zip;
 
     [ObservableProperty]
-    public List<string> _Statuses = ["", "Open", "Assigned", "In Progress",
-        "Pending Customer", "On Hold", "Resolved", "Closed"];
+    public List<string> _Statuses = ["", "Open", "Assigned", "In Progress", "Closed"];
     [ObservableProperty]
     public List<string> _Priorities = ["", "High", "Standard"];
 
     [ObservableProperty]
     public List<string> _Groups = ["", "Tech Support", "Maintenance Team"];
+
+    [ObservableProperty]
+    public ObservableCollection<Customer>? _ExistingCustomers;
+    [ObservableProperty]
+    public Customer? _SelectedCustomer;
 
     public ICommand ClearCommand { get; }
     public ICommand CreateTicketCommand { get; }
@@ -92,10 +97,13 @@ public partial class CreateNewTicketViewModel : BaseViewModel
     private readonly IUnitOfWork UnitOfWork;
 
     #endregion
+
     public CreateNewTicketViewModel(IUnitOfWork unitOfWork)
     {
-        // Init unit of work with DI 
+        // Init unit of work
         UnitOfWork = unitOfWork;
+
+        ExistingCustomers = new ObservableCollection<Customer>(UnitOfWork.Customers.FindAll());
 
         // Set Commands
         ClearCommand = new RelayCommand(Clear);
@@ -104,26 +112,36 @@ public partial class CreateNewTicketViewModel : BaseViewModel
 
     public void CreateTicket()
     {
+        int id;
+
         ValidateAllProperties();
         if (HasErrors)
         {
             return;
         }
 
-        // Create Customer
-        int id = UnitOfWork.Customers.AddCustomer(new Customer
+        // Creates a new customer if customer is null.
+        if(SelectedCustomer == null)
         {
-            Name = CustomerName,
-            Email = Email,
-            Phone = Phone,
-            Is_Priority = Priority == "High" ? 1 : 0,
-            Address = Address,
-            State = State,
-            City = City,
-            Zip = Zip
+            // Create Customer
+            id = UnitOfWork.Customers.AddCustomer(new Customer
+            {
+                Name = CustomerName,
+                Email = Email,
+                Phone = Phone,
+                Is_Priority = Priority == "High" ? 1 : 0,
+                Address = Address,
+                State = State,
+                City = City,
+                Zip = Zip
 
-        });
-
+            });
+        }
+        else
+        {
+            id = SelectedCustomer.Id;
+        }
+        
         // Create Ticket
         UnitOfWork.Tickets.Add(new Ticket
         {
@@ -137,11 +155,13 @@ public partial class CreateNewTicketViewModel : BaseViewModel
         });
 
         UnitOfWork.Commit();
+
+        MessageBox.Show("Ticket created!");
+        Clear();
     }
 
     public void Clear()
     {
-        ClearErrors();
         Title = "";
         Description = "";
         Status = "";
@@ -154,6 +174,22 @@ public partial class CreateNewTicketViewModel : BaseViewModel
         City = "";
         State = "";
         Zip = "";
+        SelectedCustomer = null;
+        ClearErrors();
     }
 
+    partial void OnSelectedCustomerChanged(Customer? value)
+    {
+        if(value != null)
+        {
+            CustomerName = value.Name;
+            Phone = value.Phone;
+            Email = value.Email;
+            Priority = value.Is_Priority == 1 ? "High" : "Standard";
+            Address = value.Address;
+            City = value.City;
+            State = value.State;
+            Zip = value.Zip;
+        }
+    }
 }
