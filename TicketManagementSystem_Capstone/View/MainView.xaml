@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Row="0" Grid.ColumnSpan="7" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
-                    <TextBlock Text="DuraTech Ticket Management System" Foreground="White" VerticalAlignment="Center"
+                    <TextBlock Text="DuraTech Ticket Management System" Foreground="White"
                                Margin="5,0"/>
                 </DockPanel>
                 <!--TODO : ADD LOGO AND ADD BUTTONS-->

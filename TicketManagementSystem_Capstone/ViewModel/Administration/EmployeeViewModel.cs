@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
@@ -13,7 +14,7 @@ public partial class EmployeeViewModel : BaseViewModel, IBaseTabViewModel
     public string TabName { get; set; } = "Employees";
 
     [ObservableProperty]
-    public List<string> _Teams = new List<string> {"", "Tech Support", "Maintenance Team" };
+    public List<string> _Teams = new List<string> { "", "Tech Support", "Maintenance Team" };
 
     [ObservableProperty]
     public ObservableCollection<User>? _Users;
@@ -24,14 +25,24 @@ public partial class EmployeeViewModel : BaseViewModel, IBaseTabViewModel
 
     #region User Fields
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _Email;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _Password;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _FirstName;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _LastName;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _Team;
     #endregion
 
@@ -64,6 +75,10 @@ public partial class EmployeeViewModel : BaseViewModel, IBaseTabViewModel
                 UnitOfWork.Commit();
             }
         }
+        else
+        {
+            MessageBox.Show("No user selected to delete.");
+        }
     }
 
     // Updates the selected user and refreshes list
@@ -73,17 +88,33 @@ public partial class EmployeeViewModel : BaseViewModel, IBaseTabViewModel
         {
             if (ChangesMade())
             {
-                // Copy changed information
-                SelectedUser.First_Name = FirstName;
-                SelectedUser.Last_Name = LastName;
-                SelectedUser.Email = Email;
-                SelectedUser.Team = Team;
+                ValidateAllProperties();
+                    if (!HasErrors)
+                    {
+                        // Copy changed information
+                        SelectedUser.First_Name = FirstName;
+                        SelectedUser.Last_Name = LastName;
+                        SelectedUser.Email = Email;
+                        SelectedUser.Team = Team;
+                        // Update user entity and commit
+                        UnitOfWork.Users.Update(SelectedUser);
+                        UnitOfWork.Commit();
 
-                UnitOfWork.Users.Update(SelectedUser);
-                UnitOfWork.Commit();
-
-                FilterUsers(_filterString);
+                        FilterUsers(_filterString);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Required fields have been highlighted red.");
+                    }
             }
+            else
+            {
+                MessageBox.Show("No changes were made to update user.");
+            }
+        }
+        else
+        {
+            MessageBox.Show("No user selected to update.");
         }
     }
 
@@ -105,6 +136,7 @@ public partial class EmployeeViewModel : BaseViewModel, IBaseTabViewModel
         }
 
         Clear();
+        ClearErrors();
         _filterString = filterString;
     }
     public void Clear()
@@ -130,7 +162,7 @@ public partial class EmployeeViewModel : BaseViewModel, IBaseTabViewModel
 
     private bool ChangesMade()
     {
-        if(SelectedUser.Team != Team ||
+        if (SelectedUser.Team != Team ||
             SelectedUser.First_Name != FirstName ||
             SelectedUser.Last_Name != LastName ||
             SelectedUser.Email != Email ||

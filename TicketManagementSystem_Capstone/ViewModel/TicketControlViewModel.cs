@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
@@ -24,15 +25,23 @@ public partial class TicketControlViewModel : BaseViewModel
 
     #region Ticket Fields
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _Title;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _Description;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _Status;
 
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _AssignedTo;
     #endregion
 
@@ -80,7 +89,7 @@ public partial class TicketControlViewModel : BaseViewModel
                 Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.GetAssigned(_userService.User.Team));
                 break;
         }
-
+        ClearErrors();
         _filterString = value;
     }
 
@@ -104,26 +113,43 @@ public partial class TicketControlViewModel : BaseViewModel
     // Updates the ticket, adds to db and saves changes.
     private void UpdateSelectedTicket()
     {
-        // If changes are different from initial value
-        // This stops it from updating pointlessly
-        if (ChangesMade())
+        
+        if (SelectedTicket != null)
         {
-            if (SelectedTicket != null)
+            // If changes are different from initial value
+            // This stops it from updating pointlessly
+            if (ChangesMade())
             {
-                // Apply changes on fields to ticket
-                SelectedTicket.Title = Title;
-                SelectedTicket.Description = Description;
-                SelectedTicket.Status = Status;
-                SelectedTicket.Assigned_To = AssignedTo;
-                SelectedTicket.Updated_Date = DateTime.Now;
+                // Makes sure values arent empty
+                ValidateAllProperties();
+                if (!HasErrors)
+                {
+                    // Apply changes on fields to ticket
+                    SelectedTicket.Title = Title;
+                    SelectedTicket.Description = Description;
+                    SelectedTicket.Status = Status;
+                    SelectedTicket.Assigned_To = AssignedTo;
+                    SelectedTicket.Updated_Date = DateTime.Now;
 
-                // Update ticket and update tickets collection
-                UnitOfWork.Tickets.Update(SelectedTicket);
-                UnitOfWork.Commit();
-                FilterTickets(_filterString);
+                    // Update ticket and update tickets collection
+                    UnitOfWork.Tickets.Update(SelectedTicket);
+                    UnitOfWork.Commit();
+                    FilterTickets(_filterString);
+                }
+                else
+                {
+                    MessageBox.Show("The red fields are required.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No changes were made to the ticket to update.");
             }
         }
-        
+        else
+        {
+            MessageBox.Show("A ticket hasn't been selected to edit.");
+        }
     }
 
     // Updates customer and ticket info depending on ticket selected

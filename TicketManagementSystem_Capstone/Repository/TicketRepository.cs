@@ -13,16 +13,16 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
         this.dbContext = dbContext;
     }
 
-    // Gets all tickets 
+    // Gets all tickets that arent closed. 
     public List<Ticket> GetAll()
     {
-        return dbContext.Ticket.ToList();
+        return dbContext.Ticket.Where(ticket => ticket.Status != "Closed").ToList();
     }
 
     // Get ticket assigned to group
     public List<Ticket> GetAssigned(string team)
     {
-        return dbContext.Ticket.Where(ticket => ticket.Assigned_To == team).ToList();
+        return dbContext.Ticket.Where(ticket => ticket.Assigned_To == team && ticket.Status != "Closed").ToList();
     }
 
     // Gets Tickets that are Open
@@ -31,11 +31,13 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
         return dbContext.Ticket.Where(ticket => ticket.Status == "Open").ToList();
     }
 
+    // Gets in Progress tickets
     public List<Ticket> GetInProgress()
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "In Progress").ToList();
     }
 
+    // Gets all closed tickets
     public List<Ticket> GetClosed()
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "Closed").ToList();

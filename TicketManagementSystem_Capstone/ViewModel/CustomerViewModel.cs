@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Models;
@@ -21,20 +22,34 @@ public partial class CustomerViewModel : BaseViewModel
 
     #region Customer Fields
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerName;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerPhone;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerEmail;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerPriority;
     [ObservableProperty]
     public string? _CustomerAddress;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerCity;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerState;
     [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
     public string? _CustomerZip;
     #endregion
 
@@ -98,28 +113,43 @@ public partial class CustomerViewModel : BaseViewModel
                 }
             }
         }
+        else
+        {
+            MessageBox.Show("No customer is selected to delete.");
+        }
     }
 
     private void UpdateCustomer()
     {
         if (SelectedCustomer != null)
         {
-            // Update Entity with Changes
-            SelectedCustomer.Name = CustomerName;
-            SelectedCustomer.Email = CustomerEmail;
-            SelectedCustomer.Phone = CustomerPhone;
-            SelectedCustomer.Is_Priority = CustomerPriority == "High" ? 1 : 0;
-            SelectedCustomer.Address = CustomerAddress;
-            SelectedCustomer.City = CustomerCity;
-            SelectedCustomer.State = CustomerState;
-            SelectedCustomer.Zip = CustomerZip;
+            ValidateAllProperties();
+            if (!HasErrors)
+            {
+                // Update Entity with Changes
+                SelectedCustomer.Name = CustomerName;
+                SelectedCustomer.Email = CustomerEmail;
+                SelectedCustomer.Phone = CustomerPhone;
+                SelectedCustomer.Is_Priority = CustomerPriority == "High" ? 1 : 0;
+                SelectedCustomer.Address = CustomerAddress;
+                SelectedCustomer.City = CustomerCity;
+                SelectedCustomer.State = CustomerState;
+                SelectedCustomer.Zip = CustomerZip;
 
-            // Update Customer, Commit, and Refresh Customers
-            UnitOfWork.Customers.Update(SelectedCustomer);
-            UnitOfWork.Commit();
-            Customers = new ObservableCollection<Customer>(UnitOfWork.Customers.FindAll());
+                // Update Customer, Commit, and Refresh Customers
+                UnitOfWork.Customers.Update(SelectedCustomer);
+                UnitOfWork.Commit();
+                Customers = new ObservableCollection<Customer>(UnitOfWork.Customers.FindAll());
+            }
+            else
+            {
+                MessageBox.Show("Highlighted fields are required.");
+            }
         }
-
+        else
+        {
+            MessageBox.Show("No customer is selected to edit.");
+        }
     }
 
     partial void OnSelectedCustomerChanged(Customer value)
