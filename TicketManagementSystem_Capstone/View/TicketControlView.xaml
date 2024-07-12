@@ -43,7 +43,10 @@
                              Margin="5,0"
                              Command="{Binding FilterTicketsCommand}"
                              CommandParameter="Assigned"/>
-        </StackPanel>
+                <TextBox Text="{Binding SearchText}"/>
+                <Button Content="Search" Command="{Binding SearchCommand}"/>
+
+            </StackPanel>
         
         <!--Data Grid-->
             <DataGrid   

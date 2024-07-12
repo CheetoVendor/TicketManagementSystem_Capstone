@@ -20,4 +20,6 @@ public interface ITicketRepository : IRepository<Ticket>
     public List<Ticket> GetClosed();
 
     public List<TicketCompletion> GetTicketCompletionTimes();
+
+    public List<Ticket> SearchTickets(string searchString);
 }

@@ -43,6 +43,7 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
         return dbContext.Ticket.Where(ticket => ticket.Status == "Closed").ToList();
     }
 
+    // Gets tickets tickets that are closed alongside the duration it took to close them
     public List<TicketCompletion> GetTicketCompletionTimes()
     {
         return dbContext.Ticket.Where(ticket => ticket.Status == "Closed")
@@ -51,5 +52,15 @@ public class TicketRepository : Repository<Ticket>, ITicketRepository
                 TicketId = ticket.Id,
                 DaysToComplete = (int)(ticket.Updated_Date - ticket.Created_Date).TotalDays,
             }).ToList();
+    }
+
+    // searches for tickets using string
+    public List<Ticket> SearchTickets(string searchString)
+    {
+        return dbContext.Ticket.Where(ticket =>
+        ticket.Title.Contains(searchString) ||
+        ticket.Description.Contains(searchString) ||
+        ticket.Status.Contains(searchString)
+        ).ToList();
     }
 }

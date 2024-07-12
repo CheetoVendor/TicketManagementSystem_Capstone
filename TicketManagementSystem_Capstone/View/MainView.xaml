@@ -42,7 +42,8 @@
                     <MenuItem Header="Tickets" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Tickets"/>
                     <MenuItem Header="Customers" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Customers"/>
                     <MenuItem Header="Reports" Command="{Binding ChangeViewCommand}" CommandParameter="Reports"/>
-                    <MenuItem Header="Administration" Command="{Binding ChangeViewCommand}" CommandParameter="Administration"/>
+                    <MenuItem Header="Administration" Command="{Binding ChangeViewCommand}" CommandParameter="Administration"
+                              IsEnabled="{Binding UserIsAdmin}"/>
                 </Menu>
 
                 <ContentControl Content="{Binding CurrentTabView}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="5"/>

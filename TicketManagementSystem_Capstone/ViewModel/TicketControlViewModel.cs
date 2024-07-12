@@ -21,6 +21,9 @@ public partial class TicketControlViewModel : BaseViewModel
     [ObservableProperty]
     public Customer? _SelectedCustomer;
 
+    [ObservableProperty]
+    public string? _SearchText;
+
     public string? _filterString = "All";
 
     #region Ticket Fields
@@ -60,6 +63,8 @@ public partial class TicketControlViewModel : BaseViewModel
     public ICommand DeleteSelectedTicketCommand { get; }
     public ICommand FilterTicketsCommand { get; }
 
+    public ICommand SearchCommand { get; }
+
     public TicketControlViewModel(IUnitOfWork unitOfWork, UserService userService)
     {
         UnitOfWork = unitOfWork;
@@ -69,8 +74,27 @@ public partial class TicketControlViewModel : BaseViewModel
         UpdateSelectedTicketCommand = new RelayCommand(UpdateSelectedTicket);
         DeleteSelectedTicketCommand = new RelayCommand(DeleteSelectedTicket);
         FilterTicketsCommand = new RelayCommand<string>(FilterTickets);
-
+        SearchCommand = new RelayCommand(Search);
         Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.FindAll());
+    }
+
+    private void Search()
+    {
+        ClearTicketInformation();
+        ClearErrors();
+        if(int.TryParse(SearchText, out int id))
+        {
+            SelectedTicket = Tickets.FirstOrDefault(t => t.Id == id);
+            if(SelectedTicket == null)
+            {
+                MessageBox.Show("No ticket was found by that id.");
+            }
+        }
+        else
+        {
+            Tickets = new ObservableCollection<Ticket>(UnitOfWork.Tickets.SearchTickets(SearchText));
+        }
+        
     }
 
     private void FilterTickets(string? value)

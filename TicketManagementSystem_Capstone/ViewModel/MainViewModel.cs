@@ -17,12 +17,19 @@ public partial class MainViewModel : BaseViewModel
 
     [ObservableProperty]
     public int _Index = 0;
+    [ObservableProperty]
+    public bool? _UserIsAdmin;
+
+    private UserService _userService;
 
     public ICommand ChangeViewCommand { get; }
 
-    public MainViewModel(VVMService viewViewModelService)
+    public MainViewModel(VVMService viewViewModelService, UserService userService)
     {
         _viewViewModelService = viewViewModelService;
+        _userService = userService;
+
+        UserIsAdmin = _userService.User.Admin == 1 ? true : false;
 
         CurrentTab = _viewViewModelService.GetTicketTabControlViewModel();
         CurrentTabView = _viewViewModelService.GetTicketTabControlView();
