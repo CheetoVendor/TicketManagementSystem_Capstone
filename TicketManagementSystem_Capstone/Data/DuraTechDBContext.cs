@@ -11,12 +11,13 @@ public class DuraTechDbContext : DbContext
 
     public DbSet<Ticket> Ticket => Set<Ticket>();
 
-    public DuraTechDbContext(DbContextOptions<DuraTechDbContext> options) 
+    public DuraTechDbContext(DbContextOptions<DuraTechDbContext> options)
         : base(options)
-    {}
+    { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        base.OnConfiguring(optionsBuilder);
+        //base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseSqlite("Data Source=duretech.db");
     }
 }

@@ -75,8 +75,9 @@ public partial class App : Application
                 services.AddSingleton<VVMService>();
                 services.AddDbContext<DuraTechDbContext>(options =>
                 {
-                    options.UseSqlServer(
-                        "Server=TRANCE\\MSSQLSERVERNAMED;Database=DuraTechDB;Trusted_Connection=True;TrustServerCertificate=True");
+                    options.UseSqlite("Data Source=duretech.db");
+                    //options.UseSqlServer(
+                        //"Server=TRANCE\\MSSQLSERVERNAMED;Database=DuraTechDB;Trusted_Connection=True;TrustServerCertificate=True");
                 });
 
                 // Adding repositories
