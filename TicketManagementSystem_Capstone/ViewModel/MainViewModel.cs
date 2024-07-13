@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows;
 using System.Windows.Input;
 using TicketManagementSystem_Capstone.Services;
 
@@ -23,7 +24,7 @@ public partial class MainViewModel : BaseViewModel
     private UserService _userService;
 
     public ICommand ChangeViewCommand { get; }
-
+    public ICommand ExitCommand { get; }
     public MainViewModel(VVMService viewViewModelService, UserService userService)
     {
         _viewViewModelService = viewViewModelService;
@@ -35,6 +36,12 @@ public partial class MainViewModel : BaseViewModel
         CurrentTabView = _viewViewModelService.GetTicketTabControlView();
 
         ChangeViewCommand = new RelayCommand<string>(ChangeView);
+        ExitCommand = new RelayCommand(Exit);
+    }
+
+    private void Exit()
+    {
+        Application.Current.Shutdown();
     }
 
     // Changes the View and View model whenever a tab is selected.

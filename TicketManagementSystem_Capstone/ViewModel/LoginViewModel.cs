@@ -47,6 +47,12 @@ public partial class LoginViewModel : BaseViewModel
 
     private void Login()
     {
+        if(string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+        {
+            ErrorMessage = "Email address or password is incorrect.";
+            return;
+        }
+
 
         if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
         {

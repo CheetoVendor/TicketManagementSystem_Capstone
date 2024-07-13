@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TicketManagementSystem_Capstone.Data.DuraTechDbContext" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\DuraTechDBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.App" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="35" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Migrations.InitialMigration" Collapsed="true">
+    <Position X="35" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20240709210914_InitialMigration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Migrations.DuraTechDbContextModelSnapshot" Collapsed="true">
+    <Position X="40.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\DuraTechDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Models.Customer" Collapsed="true">
+    <Position X="35" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAQIAAAACAQAAAAAAAACAAAAJAAAAAA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Models.Ticket" Collapsed="true">
+    <Position X="33.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAhCAAAEAABgAEAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Models.TicketCompletion" Collapsed="true">
+    <Position X="35" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TicketCompletion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Models.User" Collapsed="true">
+    <Position X="35" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAQABAAAAAAACEABAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Repository.Interfaces.CustomerRepository" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Repository\CustomerRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Repository.Tests.UserRepositoryTests" Collapsed="true">
+    <Position X="36.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Repository\Tests\UserRepositoryTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Repository.Repository&lt;T&gt;" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYBAAAAAAAAAAgAAAAQAAAAAAEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Repository.TicketRepository" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACEAgAARAAAAAAAAACAAAAAgAIAAAAAAA=</HashCode>
+      <FileName>Repository\TicketRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Repository.UnitOfWork" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUBAGAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Repository.UserRepository" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAAAAABAAAAAAABAAAAAAAAAAAABAAAAAAAAAE=</HashCode>
+      <FileName>Repository\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Services.UserService" Collapsed="true">
+    <Position X="38.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.Services.VVMService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAKgAAgANAAVAAAAAAAAAQgMAAAFGARMAABAUA=</HashCode>
+      <FileName>Services\VVMService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.Reports.TicketCompletionTimeView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Reports\TicketCompletionTimeView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.AdministrationTabControlView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\AdministrationTabControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.ArchiveTicketView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ArchiveTicketView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.CreateEmployeeView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CreateEmployeeView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.CreateNewCustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CreateNewCustomerView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.CreateNewTicketView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CreateNewTicketView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.CustomerTabControlView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CustomerTabControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.CustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CustomerView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.EmployeeView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\EmployeeView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.LoginView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.MainView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.ReportsTabControlView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ReportsTabControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.TicketControlView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\TicketControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.View.TicketTabControlView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\TicketTabControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.Administration.CreateEmployeeViewModel" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAQEAAEAAAgEAAAAAAAEAAAACAgAAAABACAg=</HashCode>
+      <FileName>ViewModel\Administration\CreateEmployeeViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.Administration.EmployeeViewModel" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAEAAMAEAAEAAAwAAQEAgAACACIFAABACAA=</HashCode>
+      <FileName>ViewModel\Administration\EmployeeViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.Reports.TicketCompletionTimeViewModel" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Reports\TicketCompletionTimeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.AdministrationTabControlViewModel" Collapsed="true">
+    <Position X="24" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAAIAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModel\AdministrationTabControlViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.ArchiveTicketViewModel" Collapsed="true">
+    <Position X="28.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAABAAAAABAgACAAAAAAAAAAAE=</HashCode>
+      <FileName>ViewModel\ArchiveTicketViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.BaseViewModel" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.CreateNewCustomerViewModel" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAQAIAgAwAQAAAEgAACEAgAAAAgAAACBACAA=</HashCode>
+      <FileName>ViewModel\CreateNewCustomerViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.CreateNewTicketViewModel" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACIAAAQAIAgQQAQgABEgAQIEAgAAEAgIAACBAAgA=</HashCode>
+      <FileName>ViewModel\CreateNewTicketViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.CustomerTabControlViewModel" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCAAAAAAIAAIAAAAAAAAAAAAgAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModel\CustomerTabControlViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.CustomerViewModel" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAQYAIADAQBAAABAIABAAAkAAAAAAgAAAgAAA=</HashCode>
+      <FileName>ViewModel\CustomerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.LoginViewModel" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAgBAAAAEAAAAAAAAIAAUAACAAAE=</HashCode>
+      <FileName>ViewModel\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.MainViewModel" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEoAAAAAgAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAgAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.ReportsTabControlViewModel" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAgAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModel\ReportsTabControlViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.TicketControlViewModel" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAQAKgAQAACgAhAAAQIBAwACEAAIEAAEgGAA=</HashCode>
+      <FileName>ViewModel\TicketControlViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicketManagementSystem_Capstone.ViewModel.TicketTabControlViewModel" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCAAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModel\TicketTabControlViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="TicketManagementSystem_Capstone.Repository.Interfaces.ICustomerRepository" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Repository\Interfaces\ICustomerRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TicketManagementSystem_Capstone.Repository.Interfaces.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAgAAAAQAAAAAAEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TicketManagementSystem_Capstone.Repository.Interfaces.ITicketRepository" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACEAgAABAAAAAAAAACAAAAAgAIAAAAAAA=</HashCode>
+      <FileName>Repository\Interfaces\ITicketRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TicketManagementSystem_Capstone.Repository.Interfaces.IUnitOfWork" Collapsed="true">
+    <Position X="35" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Interfaces\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TicketManagementSystem_Capstone.Repository.Interfaces.IUserRepository" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAAAAABAAAAAAABAAAAAAAAAAAABAAAAAAAAAE=</HashCode>
+      <FileName>Repository\Interfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TicketManagementSystem_Capstone.Services.IVVMS" Collapsed="true">
+    <Position X="36.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAKgAAgANAAVAAAAAAAAAQgMAAAFGARMAAAAQA=</HashCode>
+      <FileName>Services\IVVMService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TicketManagementSystem_Capstone.ViewModel.IBaseTabViewModel" Collapsed="true">
+    <Position X="33.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModel\IBaseTabViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

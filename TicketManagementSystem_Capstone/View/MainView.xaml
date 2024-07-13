@@ -32,6 +32,12 @@
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Row="0" Grid.ColumnSpan="7" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
+                    <Button Content="X" Width="20" Background="Transparent"
+                            DockPanel.Dock="Right" MinWidth="30"
+                            MaxWidth="30"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Command="{Binding ExitCommand}"/>
                     <TextBlock Text="DuraTech Ticket Management System" Foreground="White"
                                Margin="5,0"/>
                 </DockPanel>

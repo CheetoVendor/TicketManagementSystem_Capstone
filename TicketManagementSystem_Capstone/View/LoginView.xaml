@@ -48,6 +48,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
              
             <!--  Email Entry -->
@@ -67,7 +68,7 @@
                     Command="{Binding ExitCommand}"
                     Grid.Row="3" Grid.ColumnSpan="2" MaxWidth="100"/>
             <Label Content="{Binding ErrorMessage}" 
-                   Grid.Row="4" Grid.ColumnSpan="2"
+                   Grid.Row="5" Grid.ColumnSpan="2"
                    Foreground="Red"/>
         </Grid>
         
