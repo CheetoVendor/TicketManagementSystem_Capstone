@@ -7,7 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
 	  <GenerateProgramFile>false</GenerateProgramFile>
-	  <StartupObject>TicketManagementSystem_Capstone.App</StartupObject>    
+	  <StartupObject>TicketManagementSystem_Capstone.App</StartupObject>
+	  <PlatformTarget>AnyCPU</PlatformTarget>    
   </PropertyGroup>
 
   <ItemGroup>

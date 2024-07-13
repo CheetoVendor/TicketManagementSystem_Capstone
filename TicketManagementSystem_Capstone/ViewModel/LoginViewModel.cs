@@ -53,7 +53,10 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
+        try
+        {
 
+       
         if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
         {
             _userService.User = _unitOfWork.Users.LoginUser(Email, Password);
@@ -68,6 +71,10 @@ public partial class LoginViewModel : BaseViewModel
         {
             ErrorMessage = "Email address or password is incorrect.";
         }
-
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 }
