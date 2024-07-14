@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using TicketManagementSystem_Capstone.Data;
 using TicketManagementSystem_Capstone.Repository;
@@ -32,7 +35,7 @@ public partial class App : Application
         // Run app with login window
         App app = new();
         app.InitializeComponent();
-
+        
         app.MainWindow = _host.Services.GetRequiredService<LoginView>();
         app.MainWindow.Visibility = Visibility.Visible;
         app.Run();
@@ -41,7 +44,14 @@ public partial class App : Application
     // Creates host builder and adds services via DI
     private static IHostBuilder CreateHostBuilder(string[]? args)
     {
+
         return Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(x =>
+            {
+                x.AddJsonFile("appsettings.json");
+                x.AddEnvironmentVariables();
+            })
+            
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddSingleton<MainView>();
@@ -73,11 +83,10 @@ public partial class App : Application
                 services.AddTransient<TicketCompletionTimeView>();
                 services.AddTransient<TicketCompletionTimeViewModel>();
                 services.AddSingleton<VVMService>();
+                string? connectionString = hostContext.Configuration.GetConnectionString("default");
                 services.AddDbContext<DuraTechDbContext>(options =>
                 {
-                    options.UseSqlite("Data Source=duretech.db");
-                    //options.UseSqlServer(
-                        //"Server=TRANCE\\MSSQLSERVERNAMED;Database=DuraTechDB;Trusted_Connection=True;TrustServerCertificate=True");
+                    options.UseSqlite(connectionString);
                 });
 
                 // Adding repositories

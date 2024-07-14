@@ -1,13 +1,17 @@
 ﻿using TicketManagementSystem_Capstone.Data;
 using TicketManagementSystem_Capstone.Models;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace TicketManagementSystem_Capstone.Repository;
 
 public class UserRepository : Repository<User>, IUserRepository
 {
+    public DuraTechDbContext _dbContext;
+
     public UserRepository(DuraTechDbContext dbContext) : base(dbContext)
     {
+        _dbContext = dbContext;
     }
 
     /// <summary>
@@ -26,7 +30,9 @@ public class UserRepository : Repository<User>, IUserRepository
     /// <returns></returns>
     public bool IsLoginCorrect(string email, string password)
     {
-        return _dbContext.Set<User>().Any(user => user.Email.ToLower().Equals(email.ToLower()) && user.Password == password);
+        var user = _dbContext.Users.FirstOrDefault(user => user.Email == email && user.Password == password);
+
+        return user != null;
     }
 
 

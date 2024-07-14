@@ -1,23 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TicketManagementSystem_Capstone.Models;
 
 namespace TicketManagementSystem_Capstone.Data;
 
 public class DuraTechDbContext : DbContext
 {
-    public DbSet<User> Users => Set<User>();
+    public DbSet<User> Users { get; set; }
 
-    public DbSet<Customer> Customer => Set<Customer>();
+    public DbSet<Customer> Customer { get; set; }
 
-    public DbSet<Ticket> Ticket => Set<Ticket>();
+    public DbSet<Ticket> Ticket { get; set; }
 
-    public DuraTechDbContext(DbContextOptions<DuraTechDbContext> options)
+    private readonly string _connectionString;
+
+    public DuraTechDbContext(DbContextOptions<DuraTechDbContext> options, IConfiguration configuration)
         : base(options)
-    { }
+    {
+        _connectionString = configuration.GetConnectionString("default");
+        
+
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlite("Data Source=duretech.db");
+        optionsBuilder.UseSqlite(_connectionString);
+        base.OnConfiguring(optionsBuilder);
     }
 }

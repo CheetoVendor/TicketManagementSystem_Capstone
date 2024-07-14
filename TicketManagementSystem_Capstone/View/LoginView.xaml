@@ -37,30 +37,30 @@
 
         <!--Logo Thingy-->
         <Image Source="../Resources/cat.jpg" Grid.Row="2" Grid.Column="2"/>
-        
+
         <Grid Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-             
+
             <!--  Email Entry -->
             <Label Content="Email:" Foreground="White"/>
             <TextBox  Grid.Column="1" Text="{Binding Email}"/>
-            
+
             <!--  Password Entry  -->
             <Label Content="Password:" Foreground="White"
                    Grid.Row="1"/>
             <TextBox Text="{Binding Password}"
                      Grid.Row="1" Grid.Column="1"/>
-            
+
             <Button Content="Login" 
                     Command="{Binding LoginCommand}"
                     Grid.Row="2" Grid.ColumnSpan="2" MaxWidth="120"/>
@@ -68,9 +68,9 @@
                     Command="{Binding ExitCommand}"
                     Grid.Row="3" Grid.ColumnSpan="2" MaxWidth="100"/>
             <Label Content="{Binding ErrorMessage}" 
+                   HorizontalAlignment="Center"
                    Grid.Row="5" Grid.ColumnSpan="2"
                    Foreground="Red"/>
         </Grid>
-        
     </Grid>
 </Window>

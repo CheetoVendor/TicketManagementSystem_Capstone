@@ -9,7 +9,7 @@ public class UnitOfWork : IUnitOfWork
     public ITicketRepository Tickets { get; private set; }
     public IUserRepository Users { get; private set; }
 
-    private DuraTechDbContext _dbContext;
+    public DuraTechDbContext _dbContext;
 
     public UnitOfWork(DuraTechDbContext dbContext)
     {

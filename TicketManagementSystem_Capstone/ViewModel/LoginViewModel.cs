@@ -47,7 +47,7 @@ public partial class LoginViewModel : BaseViewModel
 
     private void Login()
     {
-        if(string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+        if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
         {
             ErrorMessage = "Email address or password is incorrect.";
             return;
@@ -55,26 +55,23 @@ public partial class LoginViewModel : BaseViewModel
 
         try
         {
-
-       
-        if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
-        {
-            _userService.User = _unitOfWork.Users.LoginUser(Email, Password);
+            if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
+            {
+                _userService.User = _unitOfWork.Users.LoginUser(Email, Password);
 
 
-            Application.Current.MainWindow.Hide();
-
-            Application.Current.MainWindow = _viewViewModelService.GetMainView();
-            Application.Current.MainWindow.Show();
+                Application.Current.MainWindow.Hide();
+                Application.Current.MainWindow = _viewViewModelService.GetMainView();
+                Application.Current.MainWindow.Show();
+            }
+            else
+            {
+                ErrorMessage = "Email address or password is incorrect.";
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ErrorMessage = "Email address or password is incorrect.";
-        }
-        }
-        catch(Exception ex)
-        {
-            MessageBox.Show(ex.Message);
+           Logger.Logger.Instance.WriteError(ex.ToString());
         }
     }
 }

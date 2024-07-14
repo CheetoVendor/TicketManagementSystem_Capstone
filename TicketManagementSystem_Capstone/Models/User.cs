@@ -10,4 +10,5 @@ public class User
     public string Team { get; set; }
 
     public int Admin { get; set; }
+
 }
