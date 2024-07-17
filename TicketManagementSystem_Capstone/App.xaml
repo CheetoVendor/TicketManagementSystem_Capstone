@@ -12,17 +12,17 @@
             <Setter Property="Background" Value="#dee0e2"/>
 
         </Style>
-        
+
         <!--List View -->
         <Style TargetType="ListView">
             <Setter Property="Background" Value="#6395f2"/>
         </Style>
-        
+
         <!--List View Item-->
         <Style TargetType="ListViewItem">
             <Setter Property="Height" Value="50"/>
         </Style>
-        
+
         <!--Tab Control -->
         <Style TargetType="TabControl">
             <Setter Property="Background" Value="#dee0e2"/>
@@ -36,11 +36,11 @@
                     <Setter Property="Background" Value="#dee0e2"/>
                     <Setter Property="Foreground" Value="#080808"/>
                 </Trigger>
-                
+
             </Style.Triggers>
         </Style>
 
-        
+
         <!--Combo Box-->
         <Style TargetType="ComboBox">
             <Setter Property="MinWidth" Value="100"/>
@@ -59,9 +59,9 @@
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="MaxHeight" Value="20"/>
         </Style>
-        
-        
-        
+
+
+
         <!-- TODO: Style your tables and reports in here -->
     </Application.Resources>
 </Application>

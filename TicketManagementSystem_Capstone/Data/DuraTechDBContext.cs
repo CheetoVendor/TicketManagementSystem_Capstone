@@ -18,8 +18,6 @@ public class DuraTechDbContext : DbContext
         : base(options)
     {
         _connectionString = configuration.GetConnectionString("default");
-        
-
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
