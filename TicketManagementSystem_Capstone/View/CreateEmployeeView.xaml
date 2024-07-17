@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="TicketManagementSystem_Capstone.View.CreateEmployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
+             xmlns:viewmodel="clr-namespace:TicketManagementSystem_Capstone.ViewModel.Administration"
+             d:DataContext="{d:DesignInstance Type=viewmodel:CreateEmployeeViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <!--Header-->
+        <Label Content="Create User Account" 
+               FontSize="20" Grid.ColumnSpan="3"/>
+        
+        <!--First Name -->
+        <Label Content="First Name:"
+               Grid.Row="1"/>
+        <TextBox x:Name="FirstNameTextBox"
+                 Text="{Binding FirstName, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=FirstNameTextBox}"
+                   Grid.Row="1" Grid.Column="2"/>
+
+        <!--Last Name-->
+        <Label Content="Last Name:"
+               Grid.Row="2"/>
+        <TextBox x:Name="LastNameTextBox"
+                 Text="{Binding LastName , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=LastNameTextBox}"
+           Grid.Row="2" Grid.Column="2"/>
+            
+        <!-- Email -->
+        <Label Content="Email:"
+               Grid.Row="3"/>
+        <TextBox x:Name="EmailTextBox"
+                 Text="{Binding Email , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EmailTextBox}"
+           Grid.Row="3" Grid.Column="2"/>
+            
+        <!-- Team -->
+        <Label Content="Team:"
+               Grid.Row="4"/>
+        <ComboBox x:Name="TeamComboBox"
+                  ItemsSource="{Binding Teams}"
+                  SelectedItem="{Binding Team, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                  Grid.Row="4"
+                  Grid.Column="1"
+                  HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=TeamComboBox}"
+           Grid.Row="4" Grid.Column="2"/>
+            <!-- Password -->
+        <Label Content="Password:"
+               Grid.Row="5"/>
+        <TextBox x:Name="PasswordTextBox"
+                 Text="{Binding Password , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PasswordTextBox}"
+           Grid.Row="5" Grid.Column="2"/>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2">
+            <Button Content="Create User"
+        Command="{Binding CreateUserCommand}"/>
+            <Button Content="Clear"
+        Command="{Binding ClearCommand}"/>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

@@ -6,34 +6,62 @@
              xmlns:viewModel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
              >
     <Application.Resources>
-        <!-- Data Templates -->
-        
-
-
-
 
         <!--Window -->
         <Style TargetType="Window">
-            <Setter Property="Background" Value="#091834"/>
+            <Setter Property="Background" Value="#dee0e2"/>
 
         </Style>
 
-            
+        <!--List View -->
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#6395f2"/>
+        </Style>
+
+        <!--List View Item-->
+        <Style TargetType="ListViewItem">
+            <Setter Property="Height" Value="50"/>
+        </Style>
+
+        <!--Tab Control -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="#dee0e2"/>
+        </Style>
+        <!-- Tab Item -->
+        <Style TargetType="TabItem">
+            <Setter Property="Background" Value="#080808"/>
+            <Setter Property="Foreground" Value="#dee0e2"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#dee0e2"/>
+                    <Setter Property="Foreground" Value="#080808"/>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
 
 
+        <!--Combo Box-->
+        <Style TargetType="ComboBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
         <!--Button Style -->
-        <Style TargetType="Button" >
-            <!--add a key if it looks like shit across app -->
-            <Setter Property="Foreground" Value="#DEE6FC" />
-            <Setter Property="Background" Value="#1258DC"/>
-            <Setter Property="BorderThickness" Value="0"/>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#091834" />
+            <Setter Property="Background" Value="#DEE9fc"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="MinWidth" Value="100"/>
         </Style>
         <!--TextBox Style -->
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="MaxWidth" Value="120"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MaxHeight" Value="20"/>
         </Style>
+
+
+
         <!-- TODO: Style your tables and reports in here -->
     </Application.Resources>
 </Application>

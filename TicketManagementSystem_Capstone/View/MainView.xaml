@@ -5,14 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
         xmlns:viewmodel="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
-        d:DataContext="{d:DesignData Type=viewmodel:LoginViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800"
-        Background="#091832">
+        Title="DuraTech TMS" Height="800" Width="900"
+        Background="Transparent" WindowStyle="None" AllowsTransparency="True">
+    <Border BorderBrush="#090909" BorderThickness="1" Background="#090909">
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="99*"/>
+                    <ColumnDefinition Width="99*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="99*"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Row="0" Grid.ColumnSpan="7" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
+                    <Button Content="X" Width="20" Background="Transparent"
+                            DockPanel.Dock="Right" MinWidth="30"
+                            MaxWidth="30"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Command="{Binding ExitCommand}"/>
+                    <TextBlock Text="DuraTech Ticket Management System" Foreground="White"
+                               Margin="5,0"/>
+                </DockPanel>
+                <!--TODO : ADD LOGO AND ADD BUTTONS-->
 
-    <Grid>
-        <!-- Move grid over -->
 
-        <ContentControl DataContext="{Binding CurrentWindow}"></ContentControl>
-    </Grid>
+                <Menu Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="7" Background="#080808" Foreground="White">
+                    <MenuItem Header="Tickets" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Tickets"/>
+                    <MenuItem Header="Customers" Height="30" Command="{Binding ChangeViewCommand}" CommandParameter="Customers"/>
+                    <MenuItem Header="Reports" Command="{Binding ChangeViewCommand}" CommandParameter="Reports"/>
+                    <MenuItem Header="Administration" Command="{Binding ChangeViewCommand}" CommandParameter="Administration"
+                              IsEnabled="{Binding UserIsAdmin}"/>
+                </Menu>
+
+                <ContentControl Content="{Binding CurrentTabView}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
+            </Grid>
+        </Grid>
+    </Border>
+    
 </Window>

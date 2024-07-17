@@ -1,38 +1,31 @@
 ﻿using TicketManagementSystem_Capstone.Data;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
 
-namespace TicketManagementSystem_Capstone.Repository
+namespace TicketManagementSystem_Capstone.Repository;
+
+public class UnitOfWork : IUnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable, IAsyncDisposable
+    public ICustomerRepository Customers { get; private set; }
+    public ITicketRepository Tickets { get; private set; }
+    public IUserRepository Users { get; private set; }
+
+    public DuraTechDbContext _dbContext;
+
+    public UnitOfWork(DuraTechDbContext dbContext)
     {
-        public ICustomerRepository Customers { get; }
-        public IGroupRepository Groups { get; set; }
-        public ITicketRepository Tickets { get; set; }
-        public IUserRepository Users { get; set; }
+        _dbContext = dbContext;
+        Customers = new CustomerRepository(_dbContext);
+        Tickets = new TicketRepository(_dbContext);
+        Users = new UserRepository(_dbContext);
+    }
 
-        public DuraTechDbContext DbContext { get; set; }
+    public void Commit()
+    {
+        _dbContext.SaveChanges();
+    }
 
-        public UnitOfWork(DuraTechDbContext dbContext)
-        {
-            DbContext = dbContext;
-            Customers = new CustomerRepository(dbContext);
-            Groups = new GroupRepository(dbContext);
-            Tickets = new TicketRepository(dbContext);
-        }
-
-        public void Commit()
-        {
-            DbContext.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            DbContext.Dispose();
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            await DbContext.DisposeAsync();
-        }
+    public void Dispose()
+    {
+        _dbContext.Dispose();
     }
 }

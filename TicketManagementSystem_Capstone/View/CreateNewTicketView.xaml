@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="TicketManagementSystem_Capstone.View.CreateNewTicketView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:TicketManagementSystem_Capstone.ViewModel"
+             xmlns:local="clr-namespace:TicketManagementSystem_Capstone.View"
+             d:DataContext="{d:DesignInstance Type=viewmodels:CreateNewTicketViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--Ticket Information Area-->
+        <Label Content="Ticket Information" 
+               FontSize="20"
+               Grid.Row="0"
+               Grid.ColumnSpan="2"
+               />
+        <!-- Ticket Title-->
+        <Label Content="Title:" Grid.Row="1"/>
+        <TextBox x:Name="TitleTextBox"
+                 Text="{Binding Title, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="1" Grid.Column="1" 
+                 HorizontalAlignment="Left"
+                 />
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=TitleTextBox}"
+                   Grid.Row="1" Grid.Column="2"/>
+        
+        <!-- Description -->
+        <Label Content="Description:" Grid.Row="2"/>
+        <TextBox x:Name="DescriptionTextBox"
+                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" 
+                 Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=DescriptionTextBox}"
+                   Grid.Row="2" Grid.Column="2"/>
+        
+        <!--Ticket Status-->
+        <Label Content="Status:" Grid.Row="3"/>
+        <ComboBox  x:Name="StatusComboBox"
+                   ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                   Grid.Row="3" Grid.Column="1" 
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=StatusComboBox}"
+                   Grid.Row="3" Grid.Column="2"/>
+        
+        <!--Ticket Assigned To-->
+        <Label Content="Assigned To:" Grid.Row="4"/>
+        <ComboBox x:Name="AssignedComboBox"
+                  ItemsSource="{Binding Groups}" SelectedItem="{Binding AssignedTo, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                  Grid.Row="4" Grid.Column="1"
+                  HorizontalAlignment="Left" Height="20"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AssignedComboBox}"
+                   Grid.Row="4" Grid.Column="2"/>
+        <!--Customer Information Area-->
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="3">
+            <Label Content="Customer Information" FontSize="20"/>
+            <Label Content="Existing Customer Selection:" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding ExistingCustomers}"
+                      SelectedItem="{Binding SelectedCustomer}"
+                      DisplayMemberPath="Name"
+                      VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        
+        <!--Customer Name -->
+        <Label Content="Customer Name:" Grid.Row="6"/>
+        <TextBox x:Name="CustomerNameTextBox"
+                 Text="{Binding CustomerName, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="6" Grid.Column="1" 
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerNameTextBox}"
+                   Grid.Row="6" Grid.Column="2"/>
+            
+        <!--Customer Phone Number-->
+        <Label Content="Phone Number:" 
+               Grid.Row="7"/>
+        <TextBox x:Name="CustomerPhoneTextBox"
+                 Text="{Binding Phone, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="7" Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerPhoneTextBox}"
+                   Grid.Row="7" Grid.Column="2"/>
+            
+        <!-- Customer Email -->
+        <Label Content="Email:" 
+               Grid.Row="8"/>
+        <TextBox x:Name="CustomerEmailTextBox"
+                 Text="{Binding Email, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="8" Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerEmailTextBox}"
+                   Grid.Row="8" Grid.Column="2"/>
+            
+        <!-- Customer Priority -->
+        <Label Content="Priority:" Grid.Row="9"/>
+        <ComboBox x:Name="PriorityComboBox"
+                  ItemsSource="{Binding Priorities}" 
+                  SelectedItem="{Binding Priority, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                  Grid.Row="9" Grid.Column="1"
+                  HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PriorityComboBox}"
+                   Grid.Row="9" Grid.Column="2"/>
+            
+        <!--Customer Address-->
+        <Label Content="Address:" Grid.Row="10"/>
+        <TextBox x:Name="CustomerAddressTextBox"
+                 Text="{Binding Address, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="10" Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent,ElementName=CustomerAddressTextBox}"
+                   Grid.Row="10" Grid.Column="2"/>
+            
+        <!--Customer City-->
+        <Label Content="City:" Grid.Row="11"/>
+        <TextBox x:Name="CustomerCityTextBox"
+                 Text="{Binding City, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="11" Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerCityTextBox}"
+                   Grid.Row="11" Grid.Column="2"/>
+        <!--Customer State-->
+        <Label Content="State:" Grid.Row="12"/>
+        <TextBox x:Name="CustomerStateTextBox"
+                 Text="{Binding State, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="12" Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerStateTextBox}"
+                   Grid.Row="12" Grid.Column="2"/>
+        <!--Customer Zip-->
+        <Label Content="Zip Code:" Grid.Row="13"/>
+        <TextBox x:Name="CustomerZipTextBox"
+                 Text="{Binding Zip, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="13" Grid.Column="1"
+                 HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerZipTextBox}"
+                   Grid.Row="13" Grid.Column="2"/>
+        <!--Buttons-->
+        <Button Content="Create Ticket" Command="{Binding CreateTicketCommand}" Grid.Row="14"/>
+        <Button Content="Clear" Command="{Binding ClearCommand}" Grid.Row="14" Grid.Column="1"
+                HorizontalAlignment="Left"/>
+        
+    </Grid>
+</UserControl>

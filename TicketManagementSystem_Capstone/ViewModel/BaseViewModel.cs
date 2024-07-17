@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections;
+using System.ComponentModel;
+using System.Windows.Controls;
 
-namespace TicketManagementSystem_Capstone.ViewModel
+namespace TicketManagementSystem_Capstone.ViewModel;
+
+public partial class BaseViewModel : ObservableValidator
 {
-    public partial class BaseViewModel : ObservableObject
-    {
-    }
+    
 }

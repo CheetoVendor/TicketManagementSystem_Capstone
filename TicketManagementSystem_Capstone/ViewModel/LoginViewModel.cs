@@ -1,65 +1,77 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
-using TicketManagementSystem_Capstone.Repository;
 using TicketManagementSystem_Capstone.Repository.Interfaces;
-using TicketManagementSystem_Capstone.View;
+using TicketManagementSystem_Capstone.Services;
 
-namespace TicketManagementSystem_Capstone.ViewModel
+namespace TicketManagementSystem_Capstone.ViewModel;
+
+public partial class LoginViewModel : BaseViewModel
 {
-    public partial class LoginViewModel : BaseViewModel
+    [ObservableProperty]
+    public string? _email;
+
+    [ObservableProperty]
+    public string? _password;
+
+    [ObservableProperty]
+    public string? _errorMessage;
+
+    public ICommand LoginCommand { get; }
+    public ICommand ExitCommand { get; }
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly UserService _userService;
+
+    public IVVMS _viewViewModelService;
+
+    public LoginViewModel(VVMService viewViewModelService, IUnitOfWork unitOfWork, UserService userService)
     {
-        [ObservableProperty] 
-        public string? _email; 
+        _unitOfWork = unitOfWork;
+        _viewViewModelService = viewViewModelService;
+        _userService = userService;
 
-        [ObservableProperty]
-        public string? _password;
+        LoginCommand = new RelayCommand(Login);
+        ExitCommand = new RelayCommand(Exit);
 
-        [ObservableProperty] 
-        public string? _errorMessage;
+        // Culture info
+        CultureInfo info = CultureInfo.CurrentCulture;
+        _userService.CultureInfo = info;
+    }
 
-        public ICommand LoginCommand { get; }
-        private readonly IUnitOfWork _unitOfWork;
+    private void Exit()
+    {
+        Application.Current.Shutdown();
+    }
 
-        public LoginViewModel(IUnitOfWork unitOfWork)
+    private void Login()
+    {
+        if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
         {
-
-            this._unitOfWork = unitOfWork as UnitOfWork;
-            LoginCommand = new RelayCommand(Login);
+            ErrorMessage = "Email address or password is incorrect.";
+            return;
         }
 
-        private void Login()
+        try
         {
-            
-            // get user id by email.
-            /*
-            if ()
+            if (_unitOfWork.Users.IsLoginCorrect(Email, Password))
             {
-                if ()
-                {
-                    // Todo(M) - do the navigation differently 
-                    var view1 = App._host.Services.GetRequiredService<LoginView>();
-                    view1.Visibility = Visibility.Hidden;
-                    
-                    var view2 = App._host.Services.GetService<MainView>();
-                    view2.Show();
-                }
+                _userService.User = _unitOfWork.Users.LoginUser(Email, Password);
+
+
+                Application.Current.MainWindow.Hide();
+                Application.Current.MainWindow = _viewViewModelService.GetMainView();
+                Application.Current.MainWindow.Show();
             }
             else
             {
-                
+                ErrorMessage = "Email address or password is incorrect.";
             }
-            */
-            // verify email and password match 
-            // TODO - Need to crypt/hash/salt passwords
-
-            // if so LOG IN AND MOVE TO MainWindow
-
-            // else print error
-           
+        }
+        catch (Exception ex)
+        {
+           Logger.Logger.Instance.WriteError(ex.ToString());
         }
     }
 }
